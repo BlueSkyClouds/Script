@@ -8,8 +8,8 @@
 const $ = new Env('腾讯视频会员签到');
 const notify = $.isNode() ? require('../sendNotify') : '';
 let ref_url = ''
-const _cookie = process.env.V_COOKIE
-const SEND_KEY = process.env.SEND_KEY
+const _cookie = ''
+const SEND_KEY = ''
 const auth = getAuth()
 const axios = require('axios')
 const UTC8 = new Date().getTime() + new Date().getTimezoneOffset()*60*1000 + 8*60*60*1000;
@@ -24,9 +24,8 @@ const headers = {
 /**
  * @description 拼接REF_URL
  */
-if (process.env.V_REF_URL) {
-    if(process.env.V_REF_URL.indexOf('https://access.video.qq.com/user/auth_refresh') > -1 ) {
-        ref_url = process.env.V_REF_URL
+if (ref_url) {
+    if(ref_url.indexOf('https://access.video.qq.com/user/auth_refresh') > -1 ) {
     } else {
         console.log("V_REF_URL值填写错误 取消运行")
     }
