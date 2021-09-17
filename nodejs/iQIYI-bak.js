@@ -1,18 +1,14 @@
 /*
 爱奇艺会员签到脚本
-
 更新时间: 2020.9.6
 脚本兼容: QuantumultX, Surge4, Loon, JsBox, Node.js
 电报频道: @NobyDa
 问题反馈: @NobyDa_bot
-
 获取Cookie说明：
 打开爱奇艺App后(AppStore中国区)，点击"我的", 如通知成功获取cookie, 则可以使用此签到脚本.
 获取Cookie后, 请将Cookie脚本禁用并移除主机名，以免产生不必要的MITM.
 脚本将在每天上午9:00执行, 您可以修改执行时间。
-
 如果使用Node.js, 需自行安装'request'模块. 例: npm install request -g
-
 JsBox, Node.js用户抓取Cookie说明：
 开启抓包, 打开爱奇艺App后(AppStore中国区)，点击"我的" 返回抓包App 搜索请求头关键字 psp_cki= 或 P00001= 或 authcookie=
 提取字母数字混合字段, 到&结束, 填入以下单引号内即可.
@@ -26,39 +22,29 @@ QuantumultX 远程脚本配置:
 [task_local]
 # 爱奇艺会员签到
 0 9 * * * https://raw.githubusercontent.com/NobyDa/Script/master/iQIYI-DailyBonus/iQIYI.js
-
 [rewrite_local]
 # 获取Cookie
 ^https?:\/\/iface(\d)?\.iqiyi\.com\/ url script-request-header https://raw.githubusercontent.com/NobyDa/Script/master/iQIYI-DailyBonus/iQIYI.js
-
 [mitm]
 hostname= ifac*.iqiyi.com
-
 **********************
 Surge 4.2.0+ 脚本配置:
 **********************
 [Script]
 爱奇艺签到 = type=cron,cronexp=0 9 * * *,script-path=https://raw.githubusercontent.com/NobyDa/Script/master/iQIYI-DailyBonus/iQIYI.js
-
 爱奇艺获取Cookie = type=http-request,pattern=^https?:\/\/iface(\d)?\.iqiyi\.com\/,script-path=https://raw.githubusercontent.com/NobyDa/Script/master/iQIYI-DailyBonus/iQIYI.js
-
 [MITM]
 hostname= ifac*.iqiyi.com
-
 ************************
 Loon 2.1.0+ 脚本配置:
 ************************
-
 [Script]
 # 爱奇艺签到
 cron "0 9 * * *" script-path=https://raw.githubusercontent.com/NobyDa/Script/master/iQIYI-DailyBonus/iQIYI.js
-
 # 获取Cookie
 http-request ^https?:\/\/iface(\d)?\.iqiyi\.com\/ script-path=https://raw.githubusercontent.com/NobyDa/Script/master/iQIYI-DailyBonus/iQIYI.js
-
 [Mitm]
 hostname= ifac*.iqiyi.com
-
 */
 
 var LogDetails = false; // 响应日志
@@ -66,6 +52,8 @@ var LogDetails = false; // 响应日志
 var out = 10000; // 超时 (毫秒) 如填写, 则不少于3000
 
 var $nobyda = nobyda();
+
+const axios = require('axios');
 
 (async () => {
   out = $nobyda.read("iQIYI_TimeOut") || out
@@ -76,6 +64,7 @@ var $nobyda = nobyda();
   } else if (cookie) {
     await login();
     await Checkin();
+    await JoinTasks();
     await Lottery(500);
     await $nobyda.time();
   } else {
@@ -215,6 +204,44 @@ function GetCookie() {
   } else {
     console.log("\n爱奇艺-请求不含Cookie, 跳过写入 ‼️")
   }
+}
+
+async function JoinTasks() {
+  let tasks = [];
+  const res = await getTasks();
+  const daily = {data: {data: {tasks: {}}}, ...res};
+  tasks = [...daily.data.data.tasks.daily] || [];
+  completeTasks(tasks);
+  getReward(tasks);
+}
+
+function getTasks() {
+  const url = "https://tc.vip.iqiyi.com/taskCenter/task/queryUserTask?P00001=" + cookie;
+  return axios.get(url)
+}
+
+function completeTasks(tasks) {
+  const Promises = tasks.map(task => {
+    const url = `https://tc.vip.iqiyi.com/taskCenter/task/joinTask?P00001=${cookie}&taskCode=${task.taskCode}&platform=bb136ff4276771f3&lang=zh_CN`;
+    return axios.get(url);
+  })
+  Promise.all(Promises).then(res => {
+    res.forEach(r => {
+      console.log(r.data);
+    })
+  })
+}
+
+function getReward(tasks) {
+  const Promises = tasks.map(task => {
+    const url = `https://tc.vip.iqiyi.com/taskCenter/task/getTaskRewards?P00001=${cookie}&taskCode=${task.taskCode}&platform=bb136ff4276771f3&lang=zh_CN`;
+    return axios.get(url);
+  })
+  Promise.all(Promises).then(res => {
+    res.forEach((r, i) => {
+      console.log(tasks[i].name + ":" + tasks[i].taskReward.task_reward_growth + "成长值");
+    })
+  })
 }
 
 function nobyda() {
