@@ -64,8 +64,8 @@ const axios = require('axios');
   } else if (cookie) {
     await login();
     await Checkin();
-    await JoinTasks();
     await Lottery(500);
+    await JoinTasks();
     await $nobyda.time();
   } else {
     $nobyda.notify("爱奇艺会员", "", "签到终止, 未获取Cookie");
