@@ -116,7 +116,7 @@ function Checkin() {
           if (obj.data.signInfo.code === "A00000") {
             var AwardName = obj.data.signInfo.data.rewards[0].name;
             var quantity = obj.data.signInfo.data.rewards[0].value;
-            var continued = obj.data.signInfo.data.continueSignDaysSum;
+            var continued = obj.data.signInfo.data.cumulateSignDaysSum;
             $nobyda.data = "签到成功: " + AwardName + quantity + ", 已连签" + continued + "天 🎉"
             console.log(`爱奇艺-${$nobyda.data} ${Details}`)
           } else {
