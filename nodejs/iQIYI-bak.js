@@ -117,7 +117,7 @@ function Checkin() {
             var AwardName = obj.data.signInfo.data.rewards[0].name;
             var quantity = obj.data.signInfo.data.rewards[0].value;
             var continued = obj.data.signInfo.data.cumulateSignDaysSum;
-            $nobyda.data = "签到成功: " + AwardName + quantity + ", 已连签" + continued + "天 🎉"
+            $nobyda.data = "签到成功: " + AwardName + quantity + ", 累计签到" + continued + "天 🎉"
             console.log(`爱奇艺-${$nobyda.data} ${Details}`)
           } else {
             $nobyda.data = "签到失败: " + obj.data.signInfo.msg + " ⚠️"
@@ -154,7 +154,7 @@ function Lottery(s) {
             $nobyda.data += !$nobyda.last ? `\n抽奖成功: ${obj.awardName.replace(/《.+》/, "未中奖")} 🎉` : `\n抽奖失败: 今日已抽奖 ⚠️`
             console.log(`爱奇艺-抽奖明细: ${obj.awardName.replace(/《.+》/, "未中奖")} 🎉 (${$nobyda.times}) ${Details}`)
           } else if (data.match(/\"errorReason\"/)) {
-            msg = data.match(/msg=.+?\)/) ? data.match(/msg=(.+?)\)/)[1].replace(/用户(未登录|不存在)/, "Cookie无效") : ""
+            const msg = data.match(/msg=.+?\)/) ? data.match(/msg=(.+?)\)/)[1].replace(/用户(未登录|不存在)/, "Cookie无效") : ""
             $nobyda.data += `\n抽奖失败: ${msg || `未知错误`} ⚠️`
             console.log(`爱奇艺-抽奖失败: ${msg || `未知错误`} ⚠️ (${$nobyda.times}) ${msg ? Details : `response:\n${data}`}`)
             console.log(data)
@@ -171,7 +171,7 @@ function Lottery(s) {
           await Lottery(s)
         } else {
           const expires = $nobyda.expire ? $nobyda.expire.replace(/\u5230\u671f/, "") : "获取失败 ⚠️"
-          if (!$nobyda.isNode) $nobyda.notify("爱奇艺", "到期时间: " + expires, $nobyda.data)
+          if (!$nobyda.isNode) $nobyda.notify("爱奇艺", "到期时间: " + expires, $nobyda.data);
         }
         resolve()
       })
@@ -207,8 +207,8 @@ function GetCookie() {
 }
 
 async function JoinTasks() {
-  console.log("开始遍历任务提交,以下仅自动提交任务并非自动完成")
-  console.log（"=====================开始遍历提交任务====================="）
+  console.log("开始遍历任务提交,以下仅自动提交任务并非自动完成");
+  console.log("=====================开始遍历提交任务=====================");
   let tasks = [];
   const res = await getTasks();
   const daily = {data: {data: {tasks: {}}}, ...res};
