@@ -1,6 +1,6 @@
 /*
 爱奇艺会员签到脚本
-更新时间: 2020.9.6
+更新时间: 2021.9.22
 脚本兼容: QuantumultX, Surge4, Loon, JsBox, Node.js
 电报频道: @NobyDa
 问题反馈: @NobyDa_bot
@@ -325,6 +325,42 @@ function nobyda() {
       $http.get(options);
     }
   }
+  const post = (options, callback) => {
+    if (isQuanX) {
+      if (typeof options == "string") options = {
+        url: options
+      }
+      options["method"] = "POST"
+      $task.fetch(options).then(response => {
+        callback(null, adapterStatus(response), response.body)
+      }, reason => callback(reason.error, null, null))
+    }
+    if (isSurge) {
+      options.headers['X-Surge-Skip-Scripting'] = false
+      $httpClient.post(options, (error, response, body) => {
+        callback(error, adapterStatus(response), body)
+      })
+    }
+    if (isNode) {
+      node.request.post(options, (error, response, body) => {
+        callback(error, adapterStatus(response), body)
+      })
+    }
+    if (isJSBox) {
+      if (typeof options == "string") options = {
+        url: options
+      }
+      options["header"] = options["headers"]
+      options["handler"] = function(resp) {
+        let error = resp.error;
+        if (error) error = JSON.stringify(resp.error)
+        let body = resp.data;
+        if (typeof body == "object") body = JSON.stringify(resp.data)
+        callback(error, adapterStatus(resp.response), body)
+      }
+      $http.post(options);
+    }
+  }
 
   const log = (message) => console.log(message)
   const time = () => {
@@ -342,6 +378,7 @@ function nobyda() {
     write,
     read,
     get,
+    post,
     log,
     time,
     times,
