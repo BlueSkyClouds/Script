@@ -207,6 +207,8 @@ function GetCookie() {
 }
 
 async function JoinTasks() {
+  console.log("开始遍历任务提交,以下仅自动提交任务并非自动完成")
+  console.log（"=====================开始遍历提交任务====================="）
   let tasks = [];
   const res = await getTasks();
   const daily = {data: {data: {tasks: {}}}, ...res};
