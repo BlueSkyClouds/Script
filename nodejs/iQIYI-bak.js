@@ -1,6 +1,6 @@
 /*
 爱奇艺会员签到脚本
-更新时间: 2021.9.22
+更新时间: 2022.1.19
 脚本兼容: QuantumultX, Surge4, Loon, JsBox, Node.js
 电报频道: @NobyDa
 问题反馈: @NobyDa_bot
@@ -10,11 +10,15 @@
 脚本将在每天上午9:00执行, 您可以修改执行时间。
 如果使用Node.js, 需自行安装'request'模块. 例: npm install request -g
 JsBox, Node.js用户抓取Cookie说明：
-开启抓包, 打开爱奇艺App后(AppStore中国区)，点击"我的" 返回抓包App 搜索请求头关键字 psp_cki= 或 P00001= 或 authcookie=
+开启抓包, 打开爱奇艺App后(AppStore中国区)，点击"我的" 返回抓包App 搜索请求头关键字 将cookie全部字段写入cookie
 提取字母数字混合字段, 到&结束, 填入以下单引号内即可.
 */
 
 var cookie = ''
+var dfp = cookie.match(/__dfp=(.*?)@/)[1]
+var P00001 = cookie.match(/P00001=(.*?);/)[1]
+var P00003 = cookie.match(/P00003=(.*?);/)[1]
+
 
 /*********************
 QuantumultX 远程脚本配置:
@@ -54,16 +58,12 @@ var out = 10000; // 超时 (毫秒) 如填写, 则不少于3000
 var $nobyda = nobyda();
 
 const axios = require('axios');
+const crypto = require('crypto');
 
 (async () => {
-  out = $nobyda.read("iQIYI_TimeOut") || out
-  cookie = cookie || $nobyda.read("CookieQY")
-  LogDetails = $nobyda.read("iQIYI_LogDetails") === "true" ? true : LogDetails
-  if ($nobyda.isRequest) {
-    GetCookie()
-  } else if (cookie) {
+  if (P00001 != "" && P00003 != "" && dfp != "") {
     await login();
-    await Checkin();
+    await WebCheckin();
     await Lottery(500);
     await JoinTasks();
     await $nobyda.time();
@@ -77,7 +77,7 @@ const axios = require('axios');
 function login() {
   return new Promise(resolve => {
     var URL = {
-      url: 'https://cards.iqiyi.com/views_category/3.0/vip_home?secure_p=iPhone&scrn_scale=0&dev_os=0&ouid=0&layout_v=6&psp_cki=' + cookie + '&page_st=suggest&app_k=8e48946f144759d86a50075555fd5862&dev_ua=iPhone8%2C2&net_sts=1&cupid_uid=0&xas=1&init_type=6&app_v=11.4.5&idfa=0&app_t=0&platform_id=0&layout_name=0&req_sn=0&api_v=0&psp_status=0&psp_uid=451953037415627&qyid=0&secure_v=0&req_times=0',
+      url: 'https://cards.iqiyi.com/views_category/3.0/vip_home?secure_p=iPhone&scrn_scale=0&dev_os=0&ouid=0&layout_v=6&psp_cki=' + P00001 + '&page_st=suggest&app_k=8e48946f144759d86a50075555fd5862&dev_ua=iPhone8%2C2&net_sts=1&cupid_uid=0&xas=1&init_type=6&app_v=11.4.5&idfa=0&app_t=0&platform_id=0&layout_name=0&req_sn=0&api_v=0&psp_status=0&psp_uid=451953037415627&qyid=0&secure_v=0&req_times=0',
       headers: {
         sign: '7fd8aadd90f4cfc99a858a4b087bcc3a',
         t: '479112291'
@@ -97,14 +97,16 @@ function login() {
   })
 }
 
-function Checkin() {
+function WebCheckin() {
   return new Promise(resolve => {
+    var str = "agenttype=1|agentversion=0|appKey=basic_pca|appver=0|authCookie=" + P00001 + "|channelCode=sign_pcw|dfp=" + dfp + "|scoreType=1|srcplatform=1|typeCode=point|userId=" + P00003 + "|user_agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/97.0.4692.71 Safari/537.36|verticalCode=iQIYI|DO58SzN6ip9nbJ4QkM8H"
+    var sign = crypto.createHash('md5').update(str).digest("hex")
     var URL = {
-      url: 'https://tc.vip.iqiyi.com/taskCenter/task/queryUserTask?autoSign=yes&P00001=' + cookie
+      url: 'https://community.iqiyi.com/openApi/score/add?agenttype=1&agentversion=0&appKey=basic_pca&appver=0&authCookie=' + P00001 + "&channelCode=sign_pcw&dfp=" + dfp +"&scoreType=1&srcplatform=1&typeCode=point&userId=" + P00003 + "&user_agent=Mozilla/5.0%20(Windows%20NT%2010.0;%20Win64;%20x64)%20AppleWebKit/537.36%20(KHTML,%20like%20Gecko)%20Chrome/97.0.4692.71%20Safari/537.36&verticalCode=iQIYI&sign=" + sign
     }
     $nobyda.get(URL, function(error, response, data) {
       if (error) {
-        $nobyda.data = "签到失败: 接口请求出错 ‼️"
+        $nobyda.data = "网页端签到失败: 接口请求出错 ‼️"
         console.log(`爱奇艺-${$nobyda.data} ${error}`)
       } else {
         if(!isJSON_test(data)){
@@ -112,15 +114,14 @@ function Checkin() {
         }
         const obj = JSON.parse(data)
         const Details = LogDetails ? `response:\n${data}` : ''
-        if (obj.msg === "成功") {
-          if (obj.data.signInfo.code === "A00000") {
-            var AwardName = obj.data.signInfo.data.rewards[0].name;
-            var quantity = obj.data.signInfo.data.rewards[0].value;
-            var continued = obj.data.signInfo.data.cumulateSignDaysSum;
-            $nobyda.data = "签到成功: " + AwardName + quantity + ", 累计签到" + continued + "天 🎉"
+        if (obj.code === "A00000") {
+          if (obj.data[0].code === "A0000") {
+            var quantity = obj.data[0].score;
+            var continued = obj.data[0].continuousValue;
+            $nobyda.data = "网页端签到成功: 获得积分" + quantity + ", 累计签到" + continued + "天 🎉"
             console.log(`爱奇艺-${$nobyda.data} ${Details}`)
           } else {
-            $nobyda.data = "签到失败: " + obj.data.signInfo.msg + " ⚠️"
+            $nobyda.data = "网页端签到失败: " + obj.data[0].message + " ⚠️"
             console.log(`爱奇艺-${$nobyda.data} ${Details}`)
           }
         } else {
@@ -138,7 +139,7 @@ function Lottery(s) {
   return new Promise(resolve => {
     $nobyda.times++
       const URL = {
-        url: 'https://iface2.iqiyi.com/aggregate/3.0/lottery_activity?app_k=0&app_v=0&platform_id=0&dev_os=0&dev_ua=0&net_sts=0&qyid=0&psp_uid=0&psp_cki=' + cookie + '&psp_status=0&secure_p=0&secure_v=0&req_sn=0'
+        url: 'https://iface2.iqiyi.com/aggregate/3.0/lottery_activity?app_k=0&app_v=0&platform_id=0&dev_os=0&dev_ua=0&net_sts=0&qyid=0&psp_uid=0&psp_cki=' + P00001 + '&psp_status=0&secure_p=0&secure_v=0&req_sn=0'
       }
     setTimeout(() => {
       $nobyda.get(URL, async function(error, response, data) {
@@ -180,32 +181,6 @@ function Lottery(s) {
   })
 }
 
-function GetCookie() {
-  var CKA = $request.url.match(/(psp_cki=|P00001=|authcookie=)([A-Za-z0-9]+)/)
-  var CKB = JSON.stringify($request.headers).match(/(psp_cki=|P00001=|authcookie=)([A-Za-z0-9]+)/)
-  var iQIYI = CKA || CKB || null
-  var RA = $nobyda.read("CookieQY")
-  if (iQIYI) {
-    if (RA !== iQIYI[2]) {
-      var OldTime = $nobyda.read("CookieQYTime")
-      if (!$nobyda.write(iQIYI[2], "CookieQY")) {
-        $nobyda.notify(`${RA?`更新`:`首次写入`}爱奇艺签到Cookie失败‼️`, "", "")
-      } else {
-        if (!OldTime || OldTime && (Date.now() - OldTime) / 1000 >= 21600) {
-          $nobyda.write(JSON.stringify(Date.now()), "CookieQYTime")
-          $nobyda.notify(`${RA?`更新`:`首次写入`}爱奇艺签到Cookie成功 🎉`, "", "")
-        } else {
-          console.log(`\n更新爱奇艺Cookie成功! 🎉\n检测到频繁通知, 已转为输出日志`)
-        }
-      }
-    } else {
-      console.log("\n爱奇艺-与本机储存Cookie相同, 跳过写入 ⚠️")
-    }
-  } else {
-    console.log("\n爱奇艺-请求不含Cookie, 跳过写入 ‼️")
-  }
-}
-
 async function JoinTasks() {
   console.log("开始遍历任务提交,以下仅自动提交任务并非自动完成");
   console.log("=====================开始遍历提交任务=====================");
@@ -218,13 +193,13 @@ async function JoinTasks() {
 }
 
 function getTasks() {
-  const url = "https://tc.vip.iqiyi.com/taskCenter/task/queryUserTask?P00001=" + cookie;
+  const url = "https://tc.vip.iqiyi.com/taskCenter/task/queryUserTask?P00001=" + P00001;
   return axios.get(url)
 }
 
 function completeTasks(tasks) {
   const Promises = tasks.map(task => {
-    const url = `https://tc.vip.iqiyi.com/taskCenter/task/joinTask?P00001=${cookie}&taskCode=${task.taskCode}&platform=bb136ff4276771f3&lang=zh_CN`;
+    const url = `https://tc.vip.iqiyi.com/taskCenter/task/joinTask?P00001=${P00001}&taskCode=${task.taskCode}&platform=bb136ff4276771f3&lang=zh_CN`;
     return axios.get(url);
   })
   Promise.all(Promises).then(res => {
@@ -236,7 +211,7 @@ function completeTasks(tasks) {
 
 function getReward(tasks) {
   const Promises = tasks.map(task => {
-    const url = `https://tc.vip.iqiyi.com/taskCenter/task/getTaskRewards?P00001=${cookie}&taskCode=${task.taskCode}&platform=bb136ff4276771f3&lang=zh_CN`;
+    const url = `https://tc.vip.iqiyi.com/taskCenter/task/getTaskRewards?P00001=${P00001}&taskCode=${task.taskCode}&platform=bb136ff4276771f3&lang=zh_CN`;
     return axios.get(url);
   })
   Promise.all(Promises).then(res => {
