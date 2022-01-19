@@ -64,11 +64,12 @@ const crypto = require('crypto');
   if (P00001 != "" && P00003 != "" && dfp != "") {
     await login();
     await WebCheckin();
-    await Lottery(500);
+    //await Lottery(500);
     await JoinTasks();
     await $nobyda.time();
   } else {
-    $nobyda.notify("爱奇艺会员", "", "签到终止, 未获取Cookie");
+    $nobyda.notify("爱奇艺会员", "", "签到终止, 由于爱奇艺更新了新的签到获取Cookie方式有所变更详情查看https://github.com/MayoBlueSky/My-Actions/blob/master/Secrets.md");
+    //$nobyda.notify("爱奇艺会员", "", "签到终止, 未获取Cookie");
   }
 })().finally(() => {
   $nobyda.done();
@@ -216,7 +217,7 @@ function getReward(tasks) {
   })
   Promise.all(Promises).then(res => {
     res.forEach((r, i) => {
-      console.log(tasks[i].name + ":" + tasks[i].taskReward.task_reward_growth + "成长值");
+      console.log(tasks[i].name + "：" + tasks[i].taskReward.task_reward_growth + "成长值");
     })
   })
 }
