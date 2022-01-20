@@ -1,6 +1,6 @@
 /*
 爱奇艺会员签到脚本
-更新时间: 2022.1.19
+更新时间: 2022.1.21
 脚本兼容: QuantumultX, Surge4, Loon, JsBox, Node.js
 电报频道: @NobyDa
 问题反馈: @NobyDa_bot
@@ -15,13 +15,15 @@ JsBox, Node.js用户抓取Cookie说明：
 */
 
 var cookie = ''
+
 if(cookie){
   var dfp = cookie.match(/__dfp=(.*?)@/)[1]
   var P00001 = cookie.match(/P00001=(.*?);/)[1]
   var P00003 = cookie.match(/P00003=(.*?);/)[1]
+  var QC005 = cookie.match(/QC005=(.*?);/)[1]
 }
 
-
+const timestamp = new Date().getTime()
 /*********************
  QuantumultX 远程脚本配置:
  **********************
@@ -59,12 +61,12 @@ const out = 10000; // 超时 (毫秒) 如填写, 则不少于3000
 
 var $nobyda = nobyda();
 
-const axios = require('axios');
 const crypto = require('crypto');
 
 (async () => {
-  if (cookie!== "" && P00001 !== "" && P00003 !== "" && dfp !== "") {
+  if (P00001 !== "" && P00003 !== "" && dfp !== "" && QC005 !== "") {
     await login();
+    await Checkin();
     await WebCheckin();
     await Lottery(500);
     await $nobyda.time();
@@ -105,12 +107,98 @@ function login() {
   })
 }
 
+function Checkin() {
+  return new Promise(resolve => {
+    const sign_date = {
+      agentType: "1",
+      agentversion: "1.0",
+      appKey: "basic_pcw",
+      authCookie: P00001,
+      qyid: QC005,
+      task_code: "natural_month_sign",
+      timestamp: timestamp,
+      typeCode: "point",
+      userId: P00003,
+    };
+    const post_date = {
+	  "natural_month_sign": {
+		"agentType": "1",
+		"agentversion": "1",
+		"authCookie": P00001,
+		"qyid": QC005,
+		"taskCode": "iQIYI_mofhr",
+		"verticalCode": "iQIYI"
+      }
+    };
+    const sign = k("UKobMjDMsDoScuWOfp6F", sign_date, {
+      split: "|",
+      sort: !0,
+      splitSecretKey: !0
+    });
+    var URL = {
+      url: 'https://community.iqiyi.com/openApi/task/execute?' + w(sign_date) + "&sign=" + sign,
+      JSON: true,
+      headers: {
+        'Content-Type':'application/json'
+      },
+      body: JSON.stringify(post_date)
+    }
+    $nobyda.post(URL, function(error, response, data) {
+      if (error) {
+        $nobyda.data = "签到失败: 接口请求出错 ‼️"
+        console.log(`爱奇艺-${$nobyda.data} ${error}`)
+      } else {
+        if(!isJSON_test(data)){
+          return false;
+        }
+        const obj = JSON.parse(data)
+        const Details = LogDetails ? `response:\n${data}` : ''
+        if (obj.code === "A00000") {
+          if (obj.data.code === "A0000") {
+            var quantity = obj.data.data.rewards[0].rewardCount;
+            var continued = obj.data.data.signDays;
+            $nobyda.data = "签到成功: 获得积分" + quantity + ", 累计签到" + continued + "天 🎉"
+            console.log(`爱奇艺-${$nobyda.data} ${Details}`)
+          } else {
+            $nobyda.data = "签到失败: " + obj.data.msg + " ⚠️"
+            console.log(`爱奇艺-${$nobyda.data} ${Details}`)
+          }
+        } else {
+          $nobyda.data = "签到失败: Cookie无效 ⚠️"
+          console.log(`爱奇艺-${$nobyda.data} ${Details}`)
+        }
+      }
+      resolve()
+    })
+    if (out) setTimeout(resolve, out)
+  })
+}
+
 function WebCheckin() {
   return new Promise(resolve => {
-    var str = "agenttype=1|agentversion=0|appKey=basic_pca|appver=0|authCookie=" + P00001 + "|channelCode=sign_pcw|dfp=" + dfp + "|scoreType=1|srcplatform=1|typeCode=point|userId=" + P00003 + "|user_agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/97.0.4692.71 Safari/537.36|verticalCode=iQIYI|DO58SzN6ip9nbJ4QkM8H"
-    var sign = crypto.createHash('md5').update(str).digest("hex")
+    const webDate = {
+      agenttype: "1",
+      agentversion: "0",
+      appKey: "basic_pca",
+      appver: "0",
+      authCookie: P00001,
+      channelCode: "sign_pcw",
+      dfp: dfp,
+      scoreType: "1",
+      srcplatform: "1",
+      typeCode: "point",
+      userId: P00003,
+      user_agent: "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/97.0.4692.71 Safari/537.36",
+      verticalCode: "iQIYI"
+    };
+
+    const sign = k("DO58SzN6ip9nbJ4QkM8H", webDate, {
+      split: "|",
+      sort: !0,
+      splitSecretKey: !0
+    });
     var URL = {
-      url: 'https://community.iqiyi.com/openApi/score/add?agenttype=1&agentversion=0&appKey=basic_pca&appver=0&authCookie=' + P00001 + "&channelCode=sign_pcw&dfp=" + dfp +"&scoreType=1&srcplatform=1&typeCode=point&userId=" + P00003 + "&user_agent=Mozilla/5.0%20(Windows%20NT%2010.0;%20Win64;%20x64)%20AppleWebKit/537.36%20(KHTML,%20like%20Gecko)%20Chrome/97.0.4692.71%20Safari/537.36&verticalCode=iQIYI&sign=" + sign
+      url: 'https://community.iqiyi.com/openApi/score/add?' + w(webDate) + "&sign=" + sign
     }
     $nobyda.get(URL, function(error, response, data) {
       if (error) {
@@ -311,6 +399,7 @@ function nobyda() {
     }
   }
   const post = (options, callback) => {
+    if (!options.body) options.headers['Content-Type'] = 'application/x-www-form-urlencoded'
     if (isQuanX) {
       if (typeof options == "string") options = {
         url: options
@@ -385,3 +474,32 @@ function isJSON_test(str) {
     }
     //console.log('It is not a string!')
 }
+
+function k(e, t) {
+  var a = arguments.length > 2 && void 0 !== arguments[2] ? arguments[2] : {}
+    , n = a.split
+    , c = void 0 === n ? "|" : n
+    , r = a.sort
+    , s = void 0 === r || r
+    , o = a.splitSecretKey
+    , i = void 0 !== o && o
+    , l = s ? Object.keys(t).sort() : Object.keys(t)
+    , u = l.map((function (e) {
+      return "".concat(e, "=").concat(t[e])
+    }
+    )).join(c) + (i ? c : "") + e;
+  return md5(u)
+}
+function md5(date){
+  return crypto.createHash("md5").update(date, "utf8").digest("hex")
+}
+function w(){
+  var e = arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : {}
+    , t = [];
+  return Object.keys(e).forEach((function (a) {
+    t.push("".concat(a, "=").concat(e[a]))
+  }
+  )),
+    t.join("&")
+}
+
