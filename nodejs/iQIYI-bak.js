@@ -14,11 +14,18 @@ JsBox, Node.js用户抓取Cookie说明：
 提取字母数字混合字段, 到&结束, 填入以下单引号内即可.
 */
 
-var cookie = ''
+const cookie = '';
+
+let P00001 = '';
+let P00003 = '';
+let dfp = '';
+
 if(cookie){
-  var dfp = cookie.match(/__dfp=(.*?)@/)[1]
-  var P00001 = cookie.match(/P00001=(.*?);/)[1]
-  var P00003 = cookie.match(/P00003=(.*?);/)[1]
+  if(cookie.includes("__dfp") && cookie.includes("P00001") && cookie.includes("P00003")){
+    dfp = cookie.match(/__dfp=(.*?)@/)[1];
+    P00001 = cookie.match(/P00001=(.*?);/)[1];
+    P00003 = cookie.match(/P00003=(.*?);/)[1];
+  }
 }
 
 const timestamp = new Date().getTime()
@@ -97,6 +104,7 @@ function login() {
       const Details = LogDetails ? data ? `response:\n${data}` : '' : ''
       if (!error && data.match(/\"text\":\"\d.+?\u5230\u671f\"/)) {
         $nobyda.expire = data.match(/\"text\":\"(\d.+?\u5230\u671f)\"/)[1]
+        //P00003 = data.match(/img7.iqiyipic.com\/passport\/.+?passport_(.*?)_/)[1]   //通过头像链接获取userid
         console.log(`爱奇艺-查询成功: ${$nobyda.expire} ${Details}`)
       } else {
         console.log(`爱奇艺-查询失败${error || ': 无到期数据 ⚠️'} ${Details}`)
@@ -337,7 +345,7 @@ function nobyda() {
         request
       })
     } else {
-      return (null)
+      return null
     }
   })()
   const notify = (title, subtitle, message) => {
