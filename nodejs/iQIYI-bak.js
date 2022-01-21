@@ -8,25 +8,18 @@
 打开爱奇艺App后(AppStore中国区)，点击"我的", 如通知成功获取cookie, 则可以使用此签到脚本.
 获取Cookie后, 请将Cookie脚本禁用并移除主机名，以免产生不必要的MITM.
 脚本将在每天上午9:00执行, 您可以修改执行时间。
-如果使用Node.js, 需自行安装'request'模块. 例: npm install request -g
+如果使用Node.js, 需自行安装'request'和'string-random'模块. 例: npm install request -g
 JsBox, Node.js用户抓取Cookie说明：
 开启抓包, 打开爱奇艺App后(AppStore中国区)，点击"我的" 返回抓包App 搜索请求头关键字 将cookie全部字段写入cookie
 提取字母数字混合字段, 到&结束, 填入以下单引号内即可.
 */
 
-const cookie = '';
+var cookie = '';
 
 let P00001 = '';
 let P00003 = '';
 let dfp = '';
 
-if(cookie){
-  if(cookie.includes("__dfp") && cookie.includes("P00001") && cookie.includes("P00003")){
-    dfp = cookie.match(/__dfp=(.*?)@/)[1];
-    P00001 = cookie.match(/P00001=(.*?);/)[1];
-    P00003 = cookie.match(/P00003=(.*?);/)[1];
-  }
-}
 
 const timestamp = new Date().getTime()
 /*********************
@@ -34,18 +27,18 @@ const timestamp = new Date().getTime()
  **********************
  [task_local]
  # 爱奇艺会员签到
- 0 9 * * * https://raw.githubusercontent.com/NobyDa/Script/master/iQIYI-DailyBonus/iQIYI.js
+ 0 9 * * * https://raw.githubusercontent.com/BlueSkyClouds/Script/master/nodejs/iQIYI-bak.js
  [rewrite_local]
  # 获取Cookie
- ^https?:\/\/iface(\d)?\.iqiyi\.com\/ url script-request-header https://raw.githubusercontent.com/NobyDa/Script/master/iQIYI-DailyBonus/iQIYI.js
+ ^https?:\/\/iface(\d)?\.iqiyi\.com\/ url script-request-header https://raw.githubusercontent.com/BlueSkyClouds/Script/master/nodejs/iQIYI-bak.js
  [mitm]
  hostname= ifac*.iqiyi.com
  **********************
  Surge 4.2.0+ 脚本配置:
  **********************
  [Script]
- 爱奇艺签到 = type=cron,cronexp=0 9 * * *,script-path=https://raw.githubusercontent.com/NobyDa/Script/master/iQIYI-DailyBonus/iQIYI.js
- 爱奇艺获取Cookie = type=http-request,pattern=^https?:\/\/iface(\d)?\.iqiyi\.com\/,script-path=https://raw.githubusercontent.com/NobyDa/Script/master/iQIYI-DailyBonus/iQIYI.js
+ 爱奇艺签到 = type=cron,cronexp=0 9 * * *,script-path=https://raw.githubusercontent.com/BlueSkyClouds/Script/master/nodejs/iQIYI-bak.js
+ 爱奇艺获取Cookie = type=http-request,pattern=^https?:\/\/iface(\d)?\.iqiyi\.com\/,script-path=https://raw.githubusercontent.com/BlueSkyClouds/Script/master/nodejs/iQIYI-bak.js
  [MITM]
  hostname= ifac*.iqiyi.com
  ************************
@@ -53,16 +46,16 @@ const timestamp = new Date().getTime()
  ************************
  [Script]
  # 爱奇艺签到
- cron "0 9 * * *" script-path=https://raw.githubusercontent.com/NobyDa/Script/master/iQIYI-DailyBonus/iQIYI.js
+ cron "0 9 * * *" script-path=https://raw.githubusercontent.com/BlueSkyClouds/Script/master/nodejs/iQIYI-bak.js
  # 获取Cookie
- http-request ^https?:\/\/iface(\d)?\.iqiyi\.com\/ script-path=https://raw.githubusercontent.com/NobyDa/Script/master/iQIYI-DailyBonus/iQIYI.js
+ http-request ^https?:\/\/iface(\d)?\.iqiyi\.com\/ script-path=https://raw.githubusercontent.com/BlueSkyClouds/Script/master/nodejs/iQIYI-bak.js
  [Mitm]
  hostname= ifac*.iqiyi.com
  */
-const LogDetails = false; // 响应日志
-const tasks = ["8a2186bb5f7bedd4", "b6e688905d4e7184", "acf8adbb5870eb29", "843376c6b3e2bf00", "8ba31f70013989a8", "CHANGE_SKIN"]; //浏览任务号
+var LogDetails = false; // 响应日志
+var tasks = ["8a2186bb5f7bedd4", "b6e688905d4e7184", "acf8adbb5870eb29", "843376c6b3e2bf00", "8ba31f70013989a8", "CHANGE_SKIN"]; //浏览任务号
 
-const out = 10000; // 超时 (毫秒) 如填写, 则不少于3000
+var out = 10000; // 超时 (毫秒) 如填写, 则不少于3000
 
 var $nobyda = nobyda();
 
@@ -71,6 +64,20 @@ const stringRandom = require('string-random');
 
 
 (async () => {
+  out = $nobyda.read("iQIYI_TimeOut") || out
+  cookie = cookie || $nobyda.read("CookieQY")
+  LogDetails = $nobyda.read("iQIYI_LogDetails") === "true" ? true : LogDetails
+  if ($nobyda.isRequest) {
+    GetCookie()
+  }
+  if(cookie){
+    if(cookie.includes("__dfp") && cookie.includes("P00001") && cookie.includes("P00003")){
+    dfp = cookie.match(/__dfp=(.*?)@/)[1];
+    P00001 = cookie.match(/P00001=(.*?);/)[1];
+    P00003 = cookie.match(/P00003=(.*?);/)[1];
+    }
+  }
+
   if (P00001 !== "" && P00003 !== "" && dfp !== "") {
     await login();
     await Checkin();
@@ -327,6 +334,32 @@ function getTaskRewards(task) {
     })
     if (out) setTimeout(resolve, out)
   })
+}
+
+function GetCookie() {
+  var CKA = $request.url.match(/(psp_cki=|P00001=|authcookie=)([A-Za-z0-9]+)/)
+  var CKB = JSON.stringify($request.headers).match(/(psp_cki=|P00001=|authcookie=)([A-Za-z0-9]+)/)
+  var iQIYI = CKA || CKB || null
+  var RA = $nobyda.read("CookieQY")
+  if (iQIYI) {
+    if (RA !== iQIYI[2]) {
+      var OldTime = $nobyda.read("CookieQYTime")
+      if (!$nobyda.write(iQIYI[2], "CookieQY")) {
+        $nobyda.notify(`${RA?`更新`:`首次写入`}爱奇艺签到Cookie失败‼️`, "", "")
+      } else {
+        if (!OldTime || OldTime && (Date.now() - OldTime) / 1000 >= 21600) {
+          $nobyda.write(JSON.stringify(Date.now()), "CookieQYTime")
+          $nobyda.notify(`${RA?`更新`:`首次写入`}爱奇艺签到Cookie成功 🎉`, "", "")
+        } else {
+          console.log(`\n更新爱奇艺Cookie成功! 🎉\n检测到频繁通知, 已转为输出日志`)
+        }
+      }
+    } else {
+      console.log("\n爱奇艺-与本机储存Cookie相同, 跳过写入 ⚠️")
+    }
+  } else {
+    console.log("\n爱奇艺-请求不含Cookie, 跳过写入 ‼️")
+  }
 }
 
 function nobyda() {
