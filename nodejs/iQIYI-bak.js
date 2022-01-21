@@ -335,8 +335,8 @@ function getTaskRewards(task) {
 }
 
 function GetCookie() {
-  var CKA = $request.url.match(/(psp_cki=|P00001=|authcookie=)([A-Za-z0-9]+)/)
-  var CKB = JSON.stringify($request.headers).match(/(psp_cki=|P00001=|authcookie=)([A-Za-z0-9]+)/)
+  var CKA = $request.url.match(/(psp_cki=|P00001=|authcookie=|P00003=|__dfp=)([A-Za-z0-9]+)/)
+  var CKB = JSON.stringify($request.headers).match(/(psp_cki=|P00001=|authcookie=|P00003=|__dfp=)([A-Za-z0-9]+)/)
   var iQIYI = CKA || CKB || null
   var RA = $nobyda.read("CookieQY")
   if (iQIYI) {
