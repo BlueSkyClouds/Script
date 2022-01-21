@@ -15,12 +15,10 @@ JsBox, Node.js用户抓取Cookie说明：
 */
 
 var cookie = ''
-
 if(cookie){
   var dfp = cookie.match(/__dfp=(.*?)@/)[1]
   var P00001 = cookie.match(/P00001=(.*?);/)[1]
   var P00003 = cookie.match(/P00003=(.*?);/)[1]
-  var QC005 = cookie.match(/QC005=(.*?);/)[1]
 }
 
 const timestamp = new Date().getTime()
@@ -55,27 +53,29 @@ const timestamp = new Date().getTime()
  hostname= ifac*.iqiyi.com
  */
 const LogDetails = false; // 响应日志
-const tasks = ['b6e688905d4e7184', 'a7f02e895ccbf416']; //浏览任务号
+const tasks = ["8a2186bb5f7bedd4", "b6e688905d4e7184", "acf8adbb5870eb29", "843376c6b3e2bf00", "8ba31f70013989a8", "CHANGE_SKIN"]; //浏览任务号
 
 const out = 10000; // 超时 (毫秒) 如填写, 则不少于3000
 
 var $nobyda = nobyda();
 
 const crypto = require('crypto');
+const stringRandom = require('string-random');
+
 
 (async () => {
-  if (P00001 !== "" && P00003 !== "" && dfp !== "" && QC005 !== "") {
+  if (P00001 !== "" && P00003 !== "" && dfp !== "") {
     await login();
     await Checkin();
     await WebCheckin();
     await Lottery(500);
-    await $nobyda.time();
     for (let i = 0; i < tasks.length; i++){
       await joinTask(tasks[i]);
       await notifyTask(tasks[i]);
       await new Promise(r => setTimeout(r, 5000));
       await getTaskRewards(tasks[i]);
     }
+    await $nobyda.time();
   } else {
     $nobyda.notify("爱奇艺会员", "", "签到终止, 由于爱奇艺更新了新的签到获取Cookie方式有所变更详情查看https://github.com/MayoBlueSky/My-Actions/blob/master/Secrets.md");
     //$nobyda.notify("爱奇艺会员", "", "签到终止, 未获取Cookie");
@@ -114,7 +114,7 @@ function Checkin() {
       agentversion: "1.0",
       appKey: "basic_pcw",
       authCookie: P00001,
-      qyid: QC005,
+      qyid: md5(stringRandom(16)),
       task_code: "natural_month_sign",
       timestamp: timestamp,
       typeCode: "point",
@@ -125,7 +125,7 @@ function Checkin() {
 		"agentType": "1",
 		"agentversion": "1",
 		"authCookie": P00001,
-		"qyid": QC005,
+		"qyid": md5(stringRandom(16)),
 		"taskCode": "iQIYI_mofhr",
 		"verticalCode": "iQIYI"
       }
@@ -176,7 +176,7 @@ function Checkin() {
 
 function WebCheckin() {
   return new Promise(resolve => {
-    const webDate = {
+    const web_sign_date = {
       agenttype: "1",
       agentversion: "0",
       appKey: "basic_pca",
@@ -192,13 +192,13 @@ function WebCheckin() {
       verticalCode: "iQIYI"
     };
 
-    const sign = k("DO58SzN6ip9nbJ4QkM8H", webDate, {
+    const sign = k("DO58SzN6ip9nbJ4QkM8H", web_sign_date, {
       split: "|",
       sort: !0,
       splitSecretKey: !0
     });
     var URL = {
-      url: 'https://community.iqiyi.com/openApi/score/add?' + w(webDate) + "&sign=" + sign
+      url: 'https://community.iqiyi.com/openApi/score/add?' + w(web_sign_date) + "&sign=" + sign
     }
     $nobyda.get(URL, function(error, response, data) {
       if (error) {
@@ -221,7 +221,7 @@ function WebCheckin() {
             console.log(`爱奇艺-${$nobyda.data} ${Details}`)
           }
         } else {
-          $nobyda.data = "签到失败: Cookie无效 ⚠️"
+          $nobyda.data = "网页端签到失败: Cookie无效 ⚠️"
           console.log(`爱奇艺-${$nobyda.data} ${Details}`)
         }
       }
@@ -302,8 +302,10 @@ function getTaskRewards(task) {
         const Details = LogDetails ? `response:\n${data}` : ''
         if (obj.msg === "成功") {
           if (obj.code === "A00000") {
-            $nobyda.data += `\n浏览奖励成功: ${obj.dataNew[0].name + obj.dataNew[0].value} 🎉`
-            console.log(`爱奇艺-浏览奖励成功: ${obj.dataNew[0].name + obj.dataNew[0].value} 🎉`)
+            if(obj.dataNew[0] !== undefined){ //任务未完成
+              $nobyda.data += `\n浏览奖励成功: ${obj.dataNew[0].name + obj.dataNew[0].value} 🎉`
+              console.log(`爱奇艺-浏览奖励成功: ${obj.dataNew[0].name + obj.dataNew[0].value} 🎉`)
+            }
           } else {
             $nobyda.data += `\n浏览奖励失败: ${obj.msg} ⚠️`
             console.log(`爱奇艺-抽奖失败: ${obj.msg || `未知错误`} ⚠️ (${$nobyda.times}) ${msg ? Details : `response:\n${data}`}`)
@@ -502,4 +504,3 @@ function w(){
   )),
     t.join("&")
 }
-
