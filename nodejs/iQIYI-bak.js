@@ -59,9 +59,6 @@ var out = 10000; // 超时 (毫秒) 如填写, 则不少于3000
 
 var $nobyda = nobyda();
 
-const crypto = require('crypto');
-const stringRandom = require('string-random');
-
 
 (async () => {
   out = $nobyda.read("iQIYI_TimeOut") || out
@@ -123,6 +120,7 @@ function login() {
 }
 
 function Checkin() {
+  const stringRandom = require('string-random');
   return new Promise(resolve => {
     const sign_date = {
       agentType: "1",
@@ -534,6 +532,7 @@ function k(e, t) {
   return md5(u)
 }
 function md5(date){
+  const crypto = require('crypto');
   return crypto.createHash("md5").update(date, "utf8").digest("hex")
 }
 function w(){
