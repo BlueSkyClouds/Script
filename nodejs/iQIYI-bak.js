@@ -16,9 +16,9 @@ JsBox, Node.js用户抓取Cookie说明：
 
 var cookie = '';
 
-let P00001 = '';
-let P00003 = '';
-let dfp = '';
+let P00001 = ''; //无需填写 自动取cookie内容拆分
+let P00003 = ''; //无需填写 自动取cookie内容拆分
+let dfp = '';    //无需填写 自动取cookie内容拆分
 
 
 const timestamp = new Date().getTime()
