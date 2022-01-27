@@ -161,7 +161,7 @@ function Checkin() {
       splitSecretKey: !0
     });
     var URL = {
-      url: 'https://community.iqiyi.com/openApi/task/execute?' + w(sign_date) + "&sign=" + sign,
+      url: `https://community.iqiyi.com/openApi/task/execute?${w(sign_date)}&sign=${sign}`,
       headers: {
         'Content-Type':'application/json'
       },
@@ -218,7 +218,7 @@ function WebCheckin() {
       splitSecretKey: !0
     });
     var URL = {
-      url: 'https://community.iqiyi.com/openApi/score/add?' + w(web_sign_date) + "&sign=" + sign
+      url: `https://community.iqiyi.com/openApi/score/add?${w(web_sign_date)}&sign=${sign}`
     }
     $nobyda.get(URL, function(error, response, data) {
       const Details = LogDetails ? `response:\n${data}` : ''
@@ -272,8 +272,6 @@ function Lottery(s) {
             console.log(`爱奇艺-抽奖失败: \n${data} (${$nobyda.times})`)
           }
         }
-        console.log(`爱奇艺-${$nobyda.data} (${s+1}) ${Details}`)
-
         if (!$nobyda.last) {
           resolve(1)
         } else {
