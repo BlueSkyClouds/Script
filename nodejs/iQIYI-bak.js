@@ -86,13 +86,13 @@ var $nobyda = nobyda();
         }
         const tasks = await getTaskList();
         for (let i = 0; i < tasks.length; i++){
-           if (![1, 4].includes(tasks[i].status)) { //0：待领取 1：已完成 2：未开始 4：进行中
-                  await joinTask(tasks[i]);
-                  await notifyTask(tasks[i]);
-                  await new Promise(r => setTimeout(r, 1000));
-                  await getTaskRewards(tasks[i]);
-                  console.log(`--------------------`)
-              }
+          if (![1, 4].includes(tasks[i].status)) { //0：待领取 1：已完成 2：未开始 4：进行中
+            await joinTask(tasks[i]);
+            await notifyTask(tasks[i]);
+            await new Promise(r => setTimeout(r, 1000));
+            await getTaskRewards(tasks[i]);
+            console.log(`--------------------`)
+           }
         }
         await login();
         await $nobyda.time();
@@ -100,7 +100,7 @@ var $nobyda = nobyda();
         console.log(`Cookie缺少关键值，需重新获取`)
       }
   } else {
-      $nobyda.notify("爱奇艺会员", "", "签到终止, 未获取Cookie");
+    $nobyda.notify("爱奇艺会员", "", "签到终止, 未获取Cookie");
   }
 })().finally(() => {
   $nobyda.done();
