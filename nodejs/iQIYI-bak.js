@@ -83,9 +83,10 @@ var $nobyda = nobyda();
     if (cookie.includes("P00001") && cookie.includes("P00003") && cookie.includes("__dfp")) {
         P00001 = cookie.match(/P00001=(.*?);/)[1];
         P00003 = cookie.match(/P00003=(.*?);/)[1];
-	    dfp = cookie.match(/__dfp=(.*?)@/)[1];
+	dfp = cookie.match(/__dfp=(.*?)@/)[1];
+        await login();
         await Checkin();
-	    await WebCheckin();
+	await WebCheckin();
         for (let i = 0; i < 3; i++){
           const run = await Lottery(i);
           if (run) {
@@ -104,7 +105,6 @@ var $nobyda = nobyda();
         		console.log(`--------------------`)
         	}
         }
-        await login();
         const expires = $nobyda.expire ? $nobyda.expire.replace(/\u5230\u671f/, "") : "获取失败 ⚠️"
         if (!$nobyda.isNode) $nobyda.notify("爱奇艺", "到期时间: " + expires, pushMsg.join('\n'));
         if (barkKey) await BarkNotify($nobyda, barkKey, '爱奇艺', `到期时间: ${expires}\n${pushMsg.join('\n')}`, barkServer);
@@ -122,20 +122,16 @@ var $nobyda = nobyda();
 function login() {
   return new Promise(resolve => {
     var URL = {
-      url: 'https://serv.vip.iqiyi.com/vipgrowth/query.action?P00001=' + P00001,
+      url: 'https://cards.iqiyi.com/views_category/3.0/vip_home?secure_p=iPhone&scrn_scale=0&dev_os=0&ouid=0&layout_v=6&psp_cki=' + P00001 + '&page_st=suggest&app_k=8e48946f144759d86a50075555fd5862&dev_ua=iPhone8%2C2&net_sts=1&cupid_uid=0&xas=1&init_type=6&app_v=11.4.5&idfa=0&app_t=0&platform_id=0&layout_name=0&req_sn=0&api_v=0&psp_status=0&psp_uid=451953037415627&qyid=0&secure_v=0&req_times=0',
+      headers: {
+        sign: '7fd8aadd90f4cfc99a858a4b087bcc3a',
+        t: '479112291'
+      }
     }
     $nobyda.get(URL, function(error, response, data) {
-      const obj = JSON.parse(data)
       const Details = LogDetails ? data ? `response:\n${data}` : '' : ''
-      if (!error && obj.code === "A00000" ) {
-        const level = obj.data.level  // VIP等级
-        const growthvalue = obj.data.growthvalue  // 当前 VIP 成长值
-        const distance = obj.data.distance  // 升级需要成长值
-        let deadline = obj.data.deadline  // VIP 到期时间
-        const today_growth_value = obj.data.todayGrowthValue
-        if(deadline === undefined){deadline = "非 VIP 用户"}
-        $nobyda.expire = ("\nVIP 等级: " + level + "\n当前成长值: " + growthvalue + "\n升级需成长值: " + distance + "\n今日成长值: " + today_growth_value + "\nVIP 到期时间: " + deadline)
-        //P00003 = data.match(/img7.iqiyipic.com\/passport\/.+?passport_(.*?)_/)[1]   //通过头像链接获取userid P00003
+      if (!error && data.match(/\"text\":\"\d.+?\u5230\u671f\"/)) {
+        $nobyda.expire = data.match(/\"text\":\"(\d.+?\u5230\u671f)\"/)[1]
         console.log(`爱奇艺-查询成功: ${$nobyda.expire} ${Details}`)
       } else {
         console.log(`爱奇艺-查询失败${error || ': 无到期数据 ⚠️'} ${Details}`)
@@ -280,8 +276,8 @@ function Lottery(s) {
         try {
         	if (error) throw new Error("接口请求出错 ‼️");
           const obj = JSON.parse(data);
-          $nobyda.last = data.match(/(机会|已经)用完/) ? true : false
-          if (obj.awardName && obj.code == 0) {
+          $nobyda.last = !!data.match(/(机会|已经)用完/)
+          if (obj.awardName && obj.code === 0) {
             LotteryMsg = `应用抽奖: ${!$nobyda.last ? `${obj.awardName.replace(/《.+》/, "未中奖")} 🎉` : `您的抽奖次数已经用完 ⚠️`}`
           } else if (data.match(/\"errorReason\"/)) {
             const msg = data.match(/msg=.+?\)/) ? data.match(/msg=(.+?)\)/)[1].replace(/用户(未登录|不存在)/, "Cookie无效") : ""
@@ -311,7 +307,7 @@ function getTaskList(task) {
       try {
         if (error) throw new Error(`请求失败`);
         const obj = JSON.parse(data);
-        if (obj.code == 'A00000' && obj.data && obj.data.tasks) {
+        if (obj.code === 'A00000' && obj.data && obj.data.tasks) {
           ['actively', 'daily'].map((group) => {
             (obj.data.tasks[group] || []).map((item) => {
               taskList.push({
@@ -400,7 +396,7 @@ function GetCookie() {
   var iQIYI = CKA && CKA.includes("P00001=") && CKA.includes("P00003=") && CKA;
   var RA = $nobyda.read("CookieQY")
   if (CKA && iQIYI) {
-    if (RA != iQIYI) {
+    if (RA !== iQIYI) {
       var OldTime = $nobyda.read("CookieQYTime")
       if (!$nobyda.write(iQIYI, "CookieQY")) {
         $nobyda.notify(`${RA?`更新`:`首次写入`}爱奇艺签到Cookie失败‼️`, "", "")
