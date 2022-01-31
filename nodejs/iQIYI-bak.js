@@ -84,7 +84,6 @@ var $nobyda = nobyda();
         P00001 = cookie.match(/P00001=(.*?);/)[1];
         P00003 = cookie.match(/P00003=(.*?);/)[1];
 	dfp = cookie.match(/__dfp=(.*?)@/)[1];
-        await login();
         await Checkin();
 	await WebCheckin();
         for (let i = 0; i < 3; i++){
@@ -95,6 +94,7 @@ var $nobyda = nobyda();
             break
           }
         }
+        await login();
         const tasks = await getTaskList();
         for (let i = 0; i < tasks.length; i++){
         	if (![1, 4].includes(tasks[i].status)) { //0：待领取 1：已完成 2：未开始 4：进行中
@@ -122,16 +122,20 @@ var $nobyda = nobyda();
 function login() {
   return new Promise(resolve => {
     var URL = {
-      url: 'https://cards.iqiyi.com/views_category/3.0/vip_home?secure_p=iPhone&scrn_scale=0&dev_os=0&ouid=0&layout_v=6&psp_cki=' + P00001 + '&page_st=suggest&app_k=8e48946f144759d86a50075555fd5862&dev_ua=iPhone8%2C2&net_sts=1&cupid_uid=0&xas=1&init_type=6&app_v=11.4.5&idfa=0&app_t=0&platform_id=0&layout_name=0&req_sn=0&api_v=0&psp_status=0&psp_uid=451953037415627&qyid=0&secure_v=0&req_times=0',
-      headers: {
-        sign: '7fd8aadd90f4cfc99a858a4b087bcc3a',
-        t: '479112291'
-      }
+      url: 'https://serv.vip.iqiyi.com/vipgrowth/query.action?P00001=' + P00001,
     }
     $nobyda.get(URL, function(error, response, data) {
+      const obj = JSON.parse(data)
       const Details = LogDetails ? data ? `response:\n${data}` : '' : ''
-      if (!error && data.match(/\"text\":\"\d.+?\u5230\u671f\"/)) {
-        $nobyda.expire = data.match(/\"text\":\"(\d.+?\u5230\u671f)\"/)[1]
+      if (!error && obj.code === "A00000" ) {
+        const level = obj.data.level  // VIP等级
+        const growthvalue = obj.data.growthvalue  // 当前 VIP 成长值
+        const distance = obj.data.distance  // 升级需要成长值
+        let deadline = obj.data.deadline  // VIP 到期时间
+        const today_growth_value = obj.data.todayGrowthValue
+        if(deadline === undefined){deadline = "非 VIP 用户"}
+        $nobyda.expire = ("\nVIP 等级: " + level + "\n当前成长值: " + growthvalue + "\n升级需成长值: " + distance + "\n今日成长值: " + today_growth_value + "\nVIP 到期时间: " + deadline)
+        //P00003 = data.match(/img7.iqiyipic.com\/passport\/.+?passport_(.*?)_/)[1]   //通过头像链接获取userid P00003
         console.log(`爱奇艺-查询成功: ${$nobyda.expire} ${Details}`)
       } else {
         console.log(`爱奇艺-查询失败${error || ': 无到期数据 ⚠️'} ${Details}`)
