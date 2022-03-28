@@ -161,7 +161,7 @@ function Checkin() {
             agentversion: "1.0",
             appKey: "basic_pcw",
             authCookie: P00001,
-            qyid: md5(stringRandom(16)),
+            qyid: md5(stringRandom(16).toString()),
             task_code: "natural_month_sign",
             timestamp: timestamp,
             typeCode: "point",
@@ -172,7 +172,7 @@ function Checkin() {
                 "agentType": "1",
                 "agentversion": "1",
                 "authCookie": P00001,
-                "qyid": md5(stringRandom(16)),
+                "qyid": md5(stringRandom(16).toString()),
                 "taskCode": "iQIYI_mofhr",
                 "verticalCode": "iQIYI"
             }
@@ -260,9 +260,9 @@ function WebCheckin() {
                     if (obj.data[0].code === "A0000") {
                         var quantity = obj.data[0].score;
                         var continued = obj.data[0].continuousValue;
-                        WebCheckinMsg = "网页签到: 积分+" + quantity + ", 累计签到" + continued + "天 🎉"
+                        WebCheckinMsg = `网页签到: 积分+${quantity}, 累计签到${continued}天 🎉`
                     } else {
-                        WebCheckinMsg = "网页签到: " + obj.data[0].message + " ⚠️"
+                        WebCheckinMsg = `网页签到: ${obj.data[0].message} ⚠️`
                     }
                 } else {
                     WebCheckinMsg = `网页签到: ${obj.message||'未知错误'} ⚠️`
