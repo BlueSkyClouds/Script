@@ -85,7 +85,7 @@ var $nobyda = nobyda();
             P00003 = cookie.match(/P00003=(.*?);/)[1];
             dfp = cookie.match(/__dfp=(.*?)@/)[1];
             await Checkin();
-            await WebCheckin();
+            //await WebCheckin();
             for (let i = 0; i < 3; i++){
                 const run = await Lottery(i);
                 if (run) {
