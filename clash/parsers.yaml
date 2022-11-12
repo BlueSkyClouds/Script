@@ -7,5 +7,6 @@ parsers: # array
       prepend-rules: # 规则由上往下遍历，如上面规则已经命中，则不再往下处理
         # 自定义规则，在这里添加自己的新规则
         - DOMAIN-SUFFIX,sda1.dev,DIRECT # 白名单用
+        - DOMAIN-SUFFIX,ax1x.com,DIRECT # 白名单用
         
         
