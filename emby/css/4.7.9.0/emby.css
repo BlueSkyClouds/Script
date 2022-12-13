@@ -1,0 +1,3219 @@
+/*全局定义图片比例*/
+:root {
+    --Portrait-ratio: 398/558;
+    --Backdrop-ratio: 800/538;
+    --Backdrop-ratio-org: 800/538;
+    --Backdrop-padding: 67.25%;
+    --Portrait-padding: 140.2%;
+}
+
+
+@media not all and (min-width: 120em) {
+    .headerTop-withSectionTabs:not(.headerTop-tv-withSectionTabs) .headerLeft {
+        width: 20%;
+        max-width: initial;
+    }
+}
+
+/*去掉视频播放界面某些按钮*/
+button[data-index="3"].videoosd-tab-button,
+button[data-index="4"].videoosd-tab-button {
+    display: none;
+}
+
+/*播放列表*/
+div.listItemImageContainer-portrait {
+    aspect-ratio: var(--Portrait-ratio) !important;
+}
+
+.listItemImage.listItemImage-portrait.coveredImage {
+    aspect-ratio: var(--Portrait-ratio) !important;
+}
+
+.trackList.vertical-list .listItemImage {
+    border-radius: .0em;
+}
+
+.dashboardSection .listItem-content {
+    padding-left: 0.3em;
+}
+
+.dashboardSection .listItemImageContainer.defaultCardBackground {
+    border-radius: 100em;
+}
+
+/*详细页标题及封面*/
+.itemName-primary {
+    font-size: calc(160% * 2);
+    max-width: 62vw;
+}
+
+div.detailTextContainer {
+    padding: 0 1.5em;
+}
+
+.detailImageContainer-main.detailImageContainer-portrait,
+.detailImageContainer-main.detailImageContainer-square {
+    display: none;
+}
+
+/*章节文字现在在图片内*/
+.verticalSection.scenesSection .cardText-first {
+    bottom: 5.5px;
+    left: 0.5em;
+    position: absolute;
+    background: #296176d1 !important;
+    background: var(--theme-background) !important;
+    border-radius: 30px;
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+    padding-bottom: 5px !important;
+    #padding-top: 5px !important;
+    opacity: 1;
+}
+
+.verticalSection.scenesSection .cardText-secondary {
+    bottom: 5.5px;
+    right: 0.5em;
+    position: absolute;
+    background: #296176d1 !important;
+    background: var(--theme-background) !important;
+    border-radius: 30px;
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+    padding-bottom: 5px !important;
+    padding-top: 5px !important;
+    opacity: 1;
+}
+
+.verticalSection.scenesSection .cardBox {
+    outline: thick solid rgb(255 255 255 / 8%) !important;
+}
+
+.verticalSection.scenesSection .cardImage {
+    background-size: cover;
+    object-fit: cover;
+}
+
+
+
+/*修改大表哥海报css*/
+div.banners .controls-slider {
+    bottom: 10%;
+    right: 10%;
+    white-space: nowrap;
+}
+
+@media not all and (min-width: 100em) {
+    img.banner-slider__cover {
+        max-height: 35vw;
+    }
+}
+
+img.banner-slider__cover {
+    object-position: top;
+    background: rgb(255 255 255 / 10%) !important;
+    box-shadow: #000 0rem 2rem 2rem -2rem;
+    border-radius: 0px !important;
+    border: 8px solid transparent !important;
+}
+
+.banner-slider__link::before {
+    border: 8px solid transparent !important;
+}
+
+div.banner-slider__item {
+    padding: 0.85rem 2rem 2.1rem 0;
+    width: 90vw;
+}
+
+img.banner-slider__title {
+    min-height: 3.5vw;
+    max-height: 6vw;
+
+}
+
+@media not all and (min-width: 100em) {
+    img.banner-slider__title {
+        margin-top: 2.5em;
+        margin-left: 7em;
+    }
+}
+
+
+@media not all and (min-width: 120em) {
+    @supports (height:calc(3.125em + 2 * max(3em, 4em))) {
+        div.headerTop-withSectionTabs.headroom-scrolling:not(.skinHeader-tv) {
+            height: calc(2.6em + 2 * max(1.2em, env(safe-area-inset-top, 0)));
+        }
+    }
+}
+
+@supports (height:calc(3.125em + 2 * max(3em, 4em))) {
+    div.headroom-scrolling:not(.skinHeader-tv) {
+        height: calc(2.125em + 2 * max(1.2em, env(safe-area-inset-top, 0)));
+    }
+}
+
+/*不显示导演头像*/
+.verticalSection.peopleSection .card:not(div[data-index="0"]).portraitCard:last-child {
+    display: none;
+}
+
+.directors {
+    display: none;
+}
+
+
+.iconicConfigurationPage .glyphs-layout {
+    background: var(--theme-background);
+}
+
+
+
+
+
+@media not all and (min-width: 120em) {
+    .headerTop-withSectionTabs:not(.skinHeader-tv) {
+        height: 5em;
+    }
+}
+
+.cardContent-shadow {
+    background-color: transparent !important;
+}
+
+
+/*light*/
+.theme-light:root .backgroundContainer,
+.theme-light:root .dialog,
+.theme-light:root .formDialogFooter:not(.formDialogFooter-clear),
+.theme-light:root .formDialogHeader:not(.formDialogHeader-clear) {
+    background: -webkit-linear-gradient(to right, rgb(201, 214, 255), rgb(226, 226, 226));
+    background: linear-gradient(to right, rgb(201, 214, 255), rgb(226, 226, 226));
+}
+
+.theme-light:root div.drawer-docked {
+    background: none !important;
+    //-webkit-border-end: none!important;
+    //border-inline-end: none!important;
+}
+
+.theme-light:root .mainDrawer {
+    background: -webkit-linear-gradient(to right, rgb(201, 214, 255), rgb(226, 226, 226)) !important;
+    background: linear-gradient(to right, rgb(201, 214, 255), rgb(226, 226, 226)) !important;
+}
+
+.theme-light:root .cardBox {
+    background: -webkit-linear-gradient(to right, rgb(201, 214, 255), rgb(226, 226, 226)) !important;
+    background: linear-gradient(to right, rgb(201, 214, 255), rgb(226, 226, 226)) !important;
+}
+
+.theme-light:root .emby-select,
+.theme-light:root .emby-input,
+.theme-light:root .emby-textarea {
+    background: none;
+    border: calc(var(--line-size) * 1.8) solid var(--line-background);
+}
+
+.theme-light:root .infoBanner,
+.theme-light:root .defaultCardBackground0,
+.theme-light:root .paperList,
+.theme-light:root .visualCardBox {
+    background: none;
+}
+
+
+/*4.7.3以上版本修复theme-blueradiance*/
+.theme-blueradiance:root .darkContentContainer-item,
+.theme-blueradiance:root {
+    --background-hue: 209 !important;
+    --background-saturation: 94% !important;
+    --background-lightness: 19.61% !important;
+}
+
+.theme-appletv:root .darkContentContainer-item,
+theme-appletv:root {
+    --theme-text-color-hue: 0;
+    --theme-text-color-saturation: 0%;
+    --theme-text-color-lightness: 0%;
+    --theme-text-color-alpha: .87;
+    --theme-accent-text-color: var(--theme-accent-text-color-darkbg);
+    --background-hue: 150;
+    --background-saturation: 2.44%;
+    --background-lightness: 83.92%;
+    --background-alpha: 1;
+}
+
+.theme-light:root .darkContentContainer-item,
+.theme-light:root {
+    --theme-text-color-hue: 0;
+    --theme-text-color-saturation: 0%;
+    --theme-text-color-lightness: 0%;
+    --theme-text-color-alpha: .87;
+    --theme-accent-text-color: var(--theme-accent-text-color-darkbg);
+    --background-hue: 150;
+    --background-saturation: 2.44%;
+    --background-lightness: 83.92%;
+    --background-alpha: 1;
+}
+
+
+:root:not(.theme-superman):not(.theme-wmc) .cardBox {
+    background: var(--theme-background);
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, .2);
+}
+
+.theme-superman:root .cardBox,
+.theme-wmc:root .cardBox {
+    background: var(--background-gradient);
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, .2);
+}
+
+/*卡片增加边框*/
+.cardPadder-portrait,
+.cardPadder-square,
+.cardPadder-smallBackdrop,
+.homeSectionsContainer .card:not(.virtualScrollItem) .cardPadder-backdrop {
+    border: thick solid transparent !important;
+}
+
+/* Selected movie/tv view - Detail view of episode */
+.detailImageContainer.detailImageContainer-main.flex.flex-direction-column.justify-content-center.itemsContainer.detailImageContainer-hidemobile.detailImageContainer-backdrop.generalItemsContainer,
+.detailImageContainer.detailImageContainer-main.flex.flex-direction-column.justify-content-center.itemsContainer.detailImageContainer-hidemobile.detailImageContainer-fourThree.generalItemsContainer {
+    order: 2;
+    width: clamp(35vw, 49.5em, 28vw) !important;
+    margin-right: 0 !important;
+    margin-left: 2.5em !important;
+}
+
+.detailImageContainer-backdrop .coveredImage,
+.detailImageContainer-fourThree .coveredImage,
+.detailImageContainer-backdrop .cardImageContainer {
+    -o-object-fit: contain !important;
+    object-fit: contain !important;
+}
+
+div.detailImageContainerCard .cardBox {
+    margin: 0 !important;
+}
+
+.alphaPickerButton {
+    font-size: large !important;
+}
+
+
+/* Episode indicator for missing and unaired */
+.undefinedmissingIndicator,
+.undefinedunairedIndicator,
+.missingIndicator,
+.unairedIndicator {
+    background: #ababab52;
+    padding: 5px 15px;
+    margin: 10px 0;
+    font-size: 12px;
+    border-radius: 5px;
+}
+
+.listItemImage:not(.coveredImage) {
+    -webkit-background-size: contain !important;
+    background-size: contain !important;
+}
+
+
+/*首页媒体库左右滚动显示*/
+.homeSectionsContainer .vertical-wrap,
+.homeSectionsContainer .itemsContainer-finepointerwrap {
+    flex-wrap: inherit !important;
+    #overflow-x: auto;
+    scrollbar-width: none;
+}
+
+
+
+
+.videoSubtitles,
+.videoSubtitles div {
+    text-shadow: #000 0px 0px 0px, #000 0px 1px 0px, #000 0px -1px 0px, #000 0px 2px 0px, #000 0px -2px 0px, #000 1px 0px 0px, #000 -1px 0px 0px, #000 1px 1px 0px, #000 -1px 1px 0px, #000 1px -1px 0px, #000 -1px -1px 0px, #000 1px 2px 0px, #000 -1px 2px 0px, #000 1px -2px 0px, #000 -1px -2px 0px, #000 2px 0px 0px, #000 -2px 0px 0px, #000 2px 1px 0px, #000 -2px 1px 0px, #000 2px -1px 0px, #000 -2px -1px 0px, #000 2px 2px 0px, #000 -2px 2px 0px, #000 2px -2px 0px, #000 -2px -2px 0px, #000 3px 0px 0px, #000 -3px 0px 0px, #000 3px 1px 0px, #000 -3px 1px 0px, #000 3px -1px 0px, #000 -3px -1px 0px;
+    line-height: initial;
+    letter-spacing: initial;
+}
+
+
+
+
+
+
+
+
+
+/*页面顶部导航背景恢复4.6样式*/
+
+div.tabs-viewmenubar-backgroundcontainer-backdropfilter {
+    background: none !important;
+    -webkit-backdrop-filter: none !important;
+    backdrop-filter: none !important;
+}
+
+button.emby-tab-button:focus,
+button.emby-tab-button-active {
+    //background: none;}
+
+    //div.videoOsdBottom-tabs {display: none;}
+
+    /*表格模式优化*/
+    .dataGrid-mainscroller-scrollX,
+    .itemsContainer_header_fixed {
+        margin-right: 2rem !important;
+    }
+
+    .withTabs .itemsViewSettingsContainer-fixed {
+        top: 6em !important;
+    }
+
+    .withTabs .itemsContainer_header_fixed {
+        top: 10em !important;
+        #padding-left: 1.2em !important;
+    }
+
+    html:not(.layout-tv) .withTabs .margin-top-page-listheader {
+        margin-top: calc(14.3em + env(safe-area-inset-top, 0)) !important;
+        #padding-left: 1.2em !important;
+    }
+
+    /*列表多选背景圆角*/
+    @media (hover: hover) and (pointer: fine) {
+
+        .chkListItemSelectContainer,
+        .chkDataGridItemSelectContainer {
+            border-radius: 0.6em;
+            left: -3.9em !important;
+        }
+    }
+
+    /* 左右箭头横向内容滚动 */
+    button.emby-scrollbuttons-scrollbutton.paper-icon-button-light {
+        box-shadow: 0px 0px 15px 0px rgb(0 0 0 / 99%) !important;
+        -webkit-box-shadow: 0px 0px 15px 0px rgb(0 0 0 / 99%) !important;
+        -moz-box-shadow: 0px 0px 15px 0px rgb(0 0 0 / 99%) !important;
+        -webkit-backdrop-filter: blur(0.5em) saturate(0.5) !important;
+        backdrop-filter: blur(0.5em) saturate(0.5) !important;
+        margin: -20px 30px 0;
+        background: #ffffff30;
+        font-size: .8em;
+    }
+
+    .scrollbuttoncontainer {
+        background: transparent !important;
+    }
+
+
+
+    /*主页中间导航缩小与最大化样式一致 */
+    @media not all and (min-width: 120em) {
+        .headerTop-withSectionTabs .headerMiddle-withSectionTabs:not(.headerMiddle-tv) {
+            -webkit-flex-grow: 1 !important;
+            flex-grow: 1 !important;
+            -webkit-flex-basis: auto;
+            flex-basis: auto;
+            -webkit-order: 0;
+            order: 0;
+            overflow: hidden;
+            display: -webkit-flex;
+            display: flex;
+            -webkit-align-items: center;
+            align-items: center;
+            -webkit-justify-content: left;
+            justify-content: left;
+            margin: 0 auto;
+        }
+    }
+
+    .page-windowScroll.withTabs,
+    html:not(.layout-tv) .withTabs .padded-top-page {
+        padding-top: 6em !important;
+        padding-top: calc(6em + env(safe-area-inset-top, 0)) !important;
+    }
+
+
+
+
+
+
+    /*修改电视模式下 外部播放器 项 左边溢出界面问题*/
+    .dialogContainer .emby-checkbox-label {
+        width: auto !important;
+    }
+
+
+    .dialogContainer:not(.dialogBackdrop) .formDialog {
+        min-width: clamp(20%, 90ch, 50%);
+    }
+
+    .dialogContainer:not(.dialogBackdrop) .dialog-content-centered {
+        max-width: fit-content;
+    }
+
+    /*媒体信息卡片背景
+    .audioVideoMediaInfo .cardBox {
+        background: none!important;
+        box-shadow: none!important;
+    }
+    */
+        /*
+    @media (min-width: 50em){
+    .darkContentContainer-item, .darkContentContainer{
+        --background-hue: 209!important;
+        --background-saturation: 94%!important;
+        --background-lightness: 19.61%!important;
+    }
+}
+*/
+    /*演员圆形*/
+    div.peopleSection .cardPadder-portrait {
+        border-radius: 100% !important;
+        aspect-ratio: 1 !important;
+        padding-bottom: 100%;
+        border-style: solid !important;
+        #border-width: 2px 2px 2px 2px !important;
+        border-width: 0 !important;
+        border-color: var(--theme-background) !important;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, .5);
+
+    }
+
+    div.details-additionalContent .peopleSection .cardBox {
+        background: none !important;
+        box-shadow: none !important;
+        outline: none !important;
+    }
+
+    div.peopleSection .cardOverlayButton-br {
+        right: auto;
+    }
+
+    /*文件夹圆形*/
+
+    div.tabContent[data-index="12"] .cardPadder-square,
+    div.tabContent[data-index="12"] .cardPadder-portrait {
+        border-radius: 100% !important;
+        aspect-ratio: 1 !important;
+        padding-bottom: 100%;
+        border-style: solid !important;
+        #border-width: 2px 2px 2px 2px !important;
+        border-width: 0 !important;
+        border-color: var(--theme-background) !important;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, .5);
+
+    }
+
+    div.tabContent[data-index="12"] .cardOverlayContainer {
+        border-color: green !important;
+    }
+
+    div.tabContent[data-index="12"] .cardBox {
+        background: none !important;
+        box-shadow: none !important;
+        outline: none !important;
+    }
+
+    div.tabContent[data-index="12"] .cardOverlayButton-br {
+        bottom: 1em;
+        right: auto;
+    }
+
+    div.tabContent[data-index="12"] .chkCardSelectContainer {
+        right: 0;
+        left: auto;
+        bottom: 0;
+        align-items: center !important;
+    }
+
+    div.tabContent[data-index="12"] .innerCardFooter {
+        background-color: #ffffff65;
+        bottom: 0.5em;
+        text-align: center;
+        color: var(--theme-background);
+
+    }
+
+    div.tabContent[data-index="12"] .cardIndicatorIcon {
+        display: none;
+    }
+
+    div.tabContent[data-index="7"] .cardIndicatorIcon {
+        display: none;
+    }
+
+    /*正方形为圆形
+    .cardPadder-square .cardImage {
+        background-size: cover;
+        object-fit: cover;
+    }
+    .cardImageContainer.cardPadder-square{
+        border-radius: 100%!important;
+        aspect-ratio: 1!important;
+        padding-bottom: 100%;
+        border-style: solid!important;
+        border-width: 2px 2px 2px 2px!important;
+        border-color: var(--theme-background)!important;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, .5);
+    }
+
+
+    .cardPadder-square.cardOverlayContainer {
+        border-radius: 100%!important;
+        aspect-ratio: 1!important;
+        padding-bottom: 100%;
+        border-style: solid!important;
+        border-width: 2px 2px 2px 2px!important;
+        border-color: green!important;
+
+    }
+    .squareCard .cardBox {
+        background: none!important;
+        box-shadow: none!important;
+        outline: none!important;
+    }
+    .cardPadder-square .cardOverlayButton-br {
+        bottom: 1em;
+        right: auto;
+    }
+    .cardPadder-square .chkCardSelectContainer {
+        right: 0;
+        left: auto;
+        bottom: 0;
+        align-items: center!important;
+    }
+*/
+    /*播放列表、类型、风格、标签拉伸图片比例，使得图片不被压扁*/
+    @supports (aspect-ratio:16 / 9) {
+
+        /*div.card.squareCard.detailImageContainerCard.card-hoverable .cardPadder-square ,*/
+        div[data-index="7"] .cardPadder-square,
+        div[data-index="9"] .cardPadder-square,
+        div[data-index="10"] .cardPadder-square,
+        div[data-index="4"] .cardPadder-square {
+            padding-bottom: 0 !important;
+            aspect-ratio: var(--Portrait-ratio);
+        }
+
+        .details-additionalContent .cardPadder-square,
+        .itemsContainer[data-parentid="361063e308310389b1c7f504760a30f3"] .cardPadder-square,
+        :not(.itemsContainer[data-minoverhang="1"]):not(.itemsContainer[data-virtualscrolllayout="vertical-grid"]).vertical-wrap .cardPadder-square {
+            padding-bottom: 0 !important;
+            aspect-ratio: var(--Portrait-ratio);
+        }
+
+        .details-additionalContent .cardPadder-square .coveredImage,
+        .itemsContainer[data-parentid="361063e308310389b1c7f504760a30f3"] .cardPadder-square .coveredImage,
+        :not(.itemsContainer[data-minoverhang="1"]):not(.itemsContainer[data-virtualscrolllayout="vertical-grid"]).vertical-wrap .cardPadder-square .coveredImage {
+            object-fit: fill !important;
+        }
+    }
+
+    div.card.squareCard.detailImageContainerCard.card-hoverable .cardPadder-square,
+    div[data-index="7"] .cardPadder-square,
+    div[data-index="9"] .cardPadder-square,
+    div[data-index="10"] .cardPadder-square,
+    div[data-index="4"] .cardPadder-square,
+    :not(.itemsContainer[data-minoverhang="1"]):not(.itemsContainer[data-virtualscrolllayout="vertical-grid"]).vertical-wrap .cardPadder-square {
+        padding-bottom: var(--Portrait-padding);
+    }
+
+    div.card.squareCard.detailImageContainerCard.card-hoverable .cardPadder-square .coveredImage,
+    div[data-index="4"] .cardPadder-square .coveredImage,
+    div[data-index="7"] .cardPadder-square .coveredImage,
+    div[data-index="9"] .cardPadder-square .coveredImage,
+    div[data-index="10"] .cardPadder-square .coveredImage,
+    div[tabindex="0"]:not(.div[data-index="12"]).squareCard .cardPadder-square .coveredImage,
+    :not(.itemsContainer[data-minoverhang="1"]):not(.itemsContainer[data-virtualscrolllayout="vertical-grid"]).vertical-wrap .cardPadder-square .coveredImage {
+        object-fit: fill !important;
+    }
+
+
+    /*媒体封面支持动图*/
+    .noScrollY {
+        width: max-content;
+    }
+
+    .itemBackdrop,
+    .backdropImage {
+        object-position: right top;
+        object-fit: cover;
+        /*display:none;关闭详细页背景图*/
+        height: 100% !important;
+        z-index: 0;
+        position: absolute;
+        background-position: top right;
+        right: 0;
+        left: 30vw;
+        width: 70vw;
+        background-size: cover;
+        background-attachment: scroll;
+        mask-image: linear-gradient(to right, transparent, black), linear-gradient(to top, transparent, black);
+        -webkit-mask-image: linear-gradient(to right, transparent, black), linear-gradient(to top, transparent, black);
+        mask-composite: source-in;
+        -webkit-mask-composite: source-in;
+        mask-composite: intersect;
+    }
+
+    /*.mainAnimatedPages:not(.mouseIdle) .videoPlayerContainer .htmlvideoplayer {
+    mask-image: linear-gradient(to right, transparent, black), linear-gradient(to top, transparent, black);
+    -webkit-mask-image: linear-gradient(to right, transparent, black), linear-gradient(to top, transparent, black); 
+    mask-composite: source-in;
+    -webkit-mask-composite: source-in; 
+    mask-composite: intersect;
+
+}*/
+    /*【节目界面】背景图片提高遮罩亮度*/
+    @media all and (min-width: 50em) {
+        .backgroundContainer.withBackdrop.itemBackgroundContainer {
+            /*background: linear-gradient(77deg, rgba(0, 0, 0, .7) -20%, rgba(0, 0, 0, .6) -50%, rgba(0, 0, 0, .3) 100%) !important;*/
+            /*background: var(--theme-background) !important; 关闭详细页背景图*/
+            background: transparent !important;
+            opacity: 1 !important;
+        }
+
+        /*【节目界面】背景图片使用模糊化
+    .backdropContainer.backdropContainer-preventbackdrop{
+        transform: scale(1.05);
+        filter: blur(1.8em) saturate(1.3);
+    }*/
+    }
+
+    /*【节目界面】背景图片提高遮罩亮度后的简介文字阴影和折叠显示行数*/
+    @media all and (min-width: 50em) {
+        .overview-text.readOnlyContent {
+            text-shadow: .5px .5px 1px rgba(0, 0, 0, .91);
+            -webkit-line-clamp: 3;
+            line-clamp: 3;
+        }
+
+        .layout-tv.noScrollY .overview-text.readOnlyContent {
+            -webkit-line-clamp: 2;
+            line-clamp: 2;
+            line-height: 1.46em;
+        }
+    }
+
+    /*【节目界面】背景图片提高遮罩亮度后的剧集简介文字不透明度*/
+    .listItem-overview.listItemBodyText,
+    .layout-tv .listItem-overview.listItemBodyText {
+        color: rgba(255, 255, 255, .92);
+    }
+
+
+    /*【节目界面】媒体类型标签链接自动换行样式*/
+    .detailMainContainer .mediaInfoItem:last-child {
+        width: 100%;
+        margin-top: .1em;
+        margin-bottom: .1em;
+        margin-left: .2em;
+    }
+
+    /*【节目界面】媒体库影评指数样式修复*/
+    .mediaInfoItem.mediaInfoCriticRating {
+        width: max-content
+    }
+
+    /*【节目界面】媒体类型样式调整并添加外边框*/
+    .mediaInfoItem a {
+        box-shadow: rgba(255, 255, 255, .4) 0 0 0 2px;
+        font-size: 100%;
+        margin-top: 8px;
+        margin-bottom: 8px;
+        margin-right: 8px;
+        padding: 2px 8px;
+        border-radius: 1em;
+    }
+
+    /*【节目界面】媒体类型添加底色背景样式*/
+    @media all and (min-width: 50em) {
+        .darkContentContainer-item .mediaInfoItem a {
+            background: rgba(115, 115, 115, .5);
+            backdrop-filter: blur(1.5em) saturate(1.8);
+        }
+
+        .mediaInfoItem .emby-button-focusscale:focus {
+            background: rgba(255, 255, 255, 1);
+        }
+    }
+
+    /*【节目界面】版本、视频、音频、字幕信息自动换行和对齐样式
+    @media all and (min-width: 80em) {
+        .noScrollY .trackSelections,.selectContainer .selectSource .selectVideoContainer .selectAudioContainer .selectSubtitlesContainer {
+            width: 24em;
+        }
+        .noScrollY,.layout-tv .trackSelections,.selectContainer .selectSource .selectVideoContainer .selectAudioContainer .selectSubtitlesContainer {
+            width: max-content;
+        }
+        .selectLabel,.selectSource.detailTrackSelect,.selectVideo.detailTrackSelect,.selectAudio.detailTrackSelect,.selectSubtitles.detailTrackSelect {
+            margin-top: .8em;
+        }
+    }
+*/
+
+    .topDetailsContainer .topDetailsMain .detailMainContainer .detailButton {
+        backdrop-filter: blur(1.5em) saturate(1.8);
+        border-radius: 5em !important;
+    }
+
+
+    /*【节目界面】播放器控件按钮添加底色背景样式*/
+    @media all and (min-width: 50em) {
+
+        .darkContentContainer-item .detailTrackSelect,
+        .darkContentContainer-item .detailButton {
+            background: rgba(115, 115, 115, .5) !important;
+            backdrop-filter: blur(1.5em) saturate(1.8) !important;
+            border-radius: 5em !important;
+        }
+
+        .emby-button-focusscale:focus {
+            background: var(--theme-primary-color);
+        }
+
+        .detailButton {
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, .2);
+        }
+    }
+
+    /*【节目界面】数据库链接、标签、拆分版本按钮添加底色背景样式*/
+    @media all and (min-width: 50em) {
+
+        .darkContentContainer-item .itemLinks .item-tag-button,
+        .darkContentContainer-item .itemTags .item-tag-button,
+        .darkContentContainer-item .splitVersionContainer .btnSplitVersions {
+            background: rgba(115, 115, 115, .3);
+            backdrop-filter: blur(1.5em) saturate(1.8) !important;
+            box-shadow: rgba(255, 255, 255, .4) 0 0 0 2.3px;
+            border-radius: 30px;
+            #color: #fff;
+            font-size: .93em;
+            margin-right: 1em;
+        }
+    }
+
+    /*【搜索界面】搜索输入框添加圆角样式*/
+    input.searchfields-txtSearch {
+        padding: .6em;
+        padding-left: 1em;
+        border-radius: 30px;
+    }
+
+    /*【搜索界面】建议栏目使用平铺样式*/
+    .searchSuggestionsList div {
+        display: inline-block;
+    }
+
+    /*【搜索界面】建议栏目添加底色背景样式*/
+    .searchSuggestionsList a {
+        background: rgba(0, 0, 0, .2);
+        border-radius: 30px;
+        margin: 5px;
+        font-size: 90%;
+        text-shadow: 0px 0px 10px rgba(0, 0, 0, 1);
+        color: rgba(255, 255, 255, .9);
+    }
+
+
+
+
+    @supports (backdrop-filter:blur(1em)) or (-webkit-backdrop-filter:blur(1em)) {
+
+        .emby-select-backdropfilter.detailTrackSelect,
+        .fab-backdropfilter,
+        .raised-backdropfilter {
+            -webkit-backdrop-filter: none !important;
+            backdrop-filter: none !important;
+            background: #ffffff25 !important;
+        }
+    }
+
+
+    .dashboardSections .cardImageContainer-sideFooter {
+        width: 8em;
+        height: 5.4em;
+    }
+
+
+
+
+
+
+
+
+
+    .cardText-first {
+        padding-left: 0.3em !important;
+        padding-right: 0.3em !important;
+    }
+
+    .dialogContainer .button-link {
+        text-align: left;
+    }
+
+
+    .peopleSection .cardTextActionButton,
+    .scenesSection .cardTextActionButton {
+        text-align: center !important;
+        height: auto !important;
+    }
+
+    .portraitCard .cardTextActionButton,
+    .backdropCard .cardTextActionButton {
+        /*text-align: left;*/
+        white-space: normal;
+        height: 2.5em;
+        border-radius: .0em;
+        font-family: 微软雅黑;
+        /*font-size: 140%;*/
+    }
+
+    .cardText-secondary {
+        font-size: 92%;
+        display: inline-block !important;
+        -webkit-flex-shrink: 0;
+        flex-shrink: 0;
+        margin: 2px 2px 0 2px !important;
+        -webkit-align-items: center;
+        align-items: center;
+        vertical-align: initial !important;
+        max-width: -webkit-fill-available;
+    }
+
+    .homeSectionsContainer .cardText-secondary,
+    div.tabContent[data-index="1"] .verticalSection .cardText-secondary,
+    div.tabContent[data-index="6"] .itemsContainer .cardText-secondary {
+        width: 100% !important;
+    }
+
+    .item-multiselected .cardImageContainer {
+        -webkit-transform: translateZ(0) scale3d(.9, .9, 1) !important;
+        transform: translateZ(0) scale3d(.9, 0.9, 1) !important;
+    }
+
+
+    /*修复星愿浏览器排版问题*/
+    .infoBanner {
+        margin-right: 1em;
+    }
+
+    .navMenuOption {
+        -webkit-align-items: initial !important;
+        align-items: initial !important;
+    }
+
+
+    .skinHeader-withBackground.skinHeader-withbackdropfilter {
+        background: none;
+        -webkit-backdrop-filter: none;
+        backdrop-filter: none;
+        background: linear-gradient(to bottom, rgb(20 20 20 / 50%), transparent) !important;
+        box-shadow: none !important;
+        transform: none !important;
+    }
+
+    .detailImageContainer-main.detailImageContainer-portrait {
+        margin-top: 0.68em;
+    }
+
+
+
+
+
+
+    .searchFieldsInner {
+        margin-top: 1em !important;
+    }
+
+    .audioVideoMediaInfo .cardOverlayContainer {
+        backdrop-filter: none;
+    }
+
+
+
+
+
+    .detailButton-text {
+        max-width: 10em;
+    }
+
+    .details-additionalContent.padded-bottom-page.details-additionalContent-withbackdrop {
+        display: flex;
+        flex-direction: column;
+    }
+
+    div.verticalSection.itemNextUpSection {
+        order: 2;
+    }
+
+    div.verticalSection.childrenSection {
+        order: 1;
+    }
+
+    div.verticalSection.peopleSection {
+        order: 3;
+    }
+
+    div.verticalSection.appearsOnListsSection {
+        order: 5;
+    }
+
+    div.verticalSection.similarSection {
+        order: 4;
+    }
+
+    div.verticalSection.tagsSection {
+        order: 9;
+    }
+
+    div.verticalSection.linksSection {
+        order: 9;
+    }
+
+    div.verticalSection.audioVideoMediaInfo {
+        order: 9;
+    }
+
+    div.verticalSection.similarOnLiveTVCollapsible {
+        order: 8;
+    }
+
+    .backdropCard .itemProgressBar {
+        background: #333;
+        background: rgba(51, 51, 51, .8);
+        position: relative;
+        height: .22em;
+        margin-left: 1.5%;
+        margin-right: 1.5%;
+    }
+
+    textarea#txtCustomCss {
+        min-height: 2000px;
+    }
+
+    .detailImageContainer-main {
+        width: 18vw !important;
+    }
+
+    .detailImageContainer-main-tv.detailImageContainer-portrait {
+        width: clamp(6vw, 23.5em, min(25vw, calc(70vh * (2 / 3)))) !important;
+    }
+
+    .horizontalSection .sectionTitle {
+        white-space: nowrap;
+        overflow: hidden;
+        -o-text-overflow: ellipsis;
+        text-overflow: ellipsis;
+        max-width: 36.5em;
+        display: block;
+    }
+
+    .wideSpotlightCard .coveredImage,
+    .wideSpotlightCard .cardImageContainer {
+        -webkit-background-size: cover;
+        background-size: cover;
+        background-position: center top;
+        -o-object-fit: cover !important;
+        object-fit: cover !important;
+        object-position: center top !important;
+    }
+
+    .home-horiz .horizontalSection.resumeSection .backdropCard {
+        width: 12.1em;
+    }
+
+    .horizontalSection .portraitCard {
+        width: 9.15em !important;
+    }
+
+    div.selectedItemInfo {
+        height: 11vh;
+    }
+
+    /*4.6.7
+.wideSpotlightCard .cardScalable {
+    height: 16.6em!important;
+}
+.homePageContent .portraitCard {
+    width: 9.05em!important;
+}
+.homePageContent .backdropCard:not(.wideSpotlightCard) {
+    width: 12.3em!important;
+}
+*/
+    div.headerMiddle.sectionTabs button.emby-tab-button[data-index="3"] {
+        display: none;
+    }
+
+    div.tabContent[data-index="12"] .cardIndicatorIcon {
+        display: none;
+    }
+
+
+
+    .mediaInfoPrimary {
+        max-width: 100em !important;
+    }
+
+    /*修复章节显示问题*/
+    .scenesSection .backdropCard .cardPadder-backdrop,
+    .videoosd-tabcontainers .backdropCard .cardPadder-backdrop {
+        padding-bottom: 56.25% !important;
+    }
+
+    .scenesSection .backdropCard .cardOverlayContainer,
+    .videoosd-tabcontainers .backdropCard .cardOverlayContainer {
+        background: -webkit-radial-gradient(50% 50%, farthest-corner, rgba(30, 30, 30, .5) 50%, #2c2c2c 100%)important;
+        background: -o-radial-gradient(50% 50%, farthest-corner, rgba(30, 30, 30, .5) 50%, #2c2c2c 100%) !important;
+        background: radial-gradient(farthest-corner at 50% 50%, rgba(30, 30, 30, .5) 50%, #2c2c2c 100%) !important;
+        border-color: rgba(0, 0, 0, 0.0) !important;
+        position: absolute !important;
+    }
+
+
+    .videoSubtitles {
+        margin: -2% !important;
+        font-family: 华文仿宋, -apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica, system-ui, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, 'Open Sans', sans-serif !important;
+        font-size: 120%;
+    }
+
+
+    div.verticalSection.peopleSection .cardImageIcon.md-icon {
+        display: none;
+    }
+
+    div.card.squareCard.detailImageContainerCard.card-hoverable .cardImageIcon.md-icon {
+        display: none;
+    }
+
+
+
+
+
+    /* Movie ribbon
+
+@media (orientation: portrait) and (min-width: 24em){
+.cardImageContainer i.cardPlayedIndicator:before, .listItemImageContainer i.listItemPlayedIndicator:before  {
+    width: 6vw;
+    height: 6vw;
+    content: ' ';
+    background: #bf0008;
+    z-index: -1;
+    position: absolute;
+    top: 0;
+    right: 0;
+    //border-radius: 0 0.5em 0 0;
+    clip-path: polygon(0 0, 100% 0,100% 100%);
+}
+.backdropCard .cardImageContainer i.cardPlayedIndicator:before,.backdropCard .listItemImageContainer i.listItemPlayedIndicator:before  {
+    clip-path: polygon(0 0.7vw, calc(100% - 0.7vw) 0.7vw,calc(100% - 0.7vw) 100%);
+}
+}
+@media (min-width: 62.5em){
+.cardImageContainer i.cardPlayedIndicator:before, .listItemImageContainer i.listItemPlayedIndicator:before  {
+    width: 2vw;
+    height:  2vw;
+    content: ' ';
+    background: #bf0008;
+    z-index: -1;
+    position: absolute;
+    top: 0;
+    right: 0;
+    //border-radius: 0 0.5em 0 0;
+    clip-path: polygon(0 0, 100% 0,100% 100%);
+}
+.backdropCard .cardImageContainer i.cardPlayedIndicator:before,.backdropCard .listItemImageContainer i.listItemPlayedIndicator:before  {
+    clip-path: polygon(0 0.28vw, calc(100% - 0.28vw) 0.28vw,calc(100% - 0.28vw) 100%);
+}
+}
+
+
+.cardImageContainer i.cardPlayedIndicator, .listItemImageContainer i.listItemPlayedIndicator {
+    overflow: visible;
+    z-index: 1;
+    background: none;
+    box-shadow: none;
+    font-size: 0px;
+    padding: 2px;
+}
+*/
+
+    .cardImageContainer i.cardPlayedIndicator {
+        width: calc(12vw / max((var(--portrait-cards) + var(--user-cards-size-adjust)), 4));
+        height: calc(12vw / max((var(--portrait-cards) + var(--user-cards-size-adjust)), 4));
+        content: ' ';
+        background: #bf0008;
+        z-index: -1;
+        position: absolute;
+        top: 0;
+        right: -1px;
+        clip-path: polygon(0 0, 100% 0, 100% 100%);
+    }
+
+    .listItemImageContainer i.listItemPlayedIndicator {
+        width: calc(9vw / max((var(--portrait-cards) + var(--user-cards-size-adjust)), 4));
+        height: calc(9vw / max((var(--portrait-cards) + var(--user-cards-size-adjust)), 4));
+        content: ' ';
+        background: #bf0008;
+        z-index: -1;
+        position: absolute;
+        top: 0;
+        right: 0;
+        clip-path: polygon(0 0, 100% 0, 100% 100%);
+    }
+
+    .backdropCard .cardImageContainer i.cardPlayedIndicator,
+    .backdropCard .listItemImageContainer i.listItemPlayedIndicator {
+        //--hpjb: calc(1.3vw / max((var(--backdrop-cards) + 2 + var(--user-cards-size-adjust)),1));
+        //clip-path: polygon(0 var(--hpjb), calc(100% - var(--hpjb)) var(--hpjb),calc(100% - var(--hpjb)) 100%);
+        top: 0px;
+        right: 0px;
+    }
+
+    .cardImageContainer i.cardPlayedIndicator,
+    .listItemImageContainer i.listItemPlayedIndicator {
+        overflow: visible;
+        z-index: 1;
+        box-shadow: none;
+        font-size: 0px;
+        padding: 2px;
+    }
+
+
+
+    /*兼edge浏览器*/
+    @supports (aspect-ratio:16 / 9) {
+
+        /*修复章节显示问题*/
+        .scenesSection .backdropCard .cardPadder-backdrop,
+        .videoosd-tabcontainers .backdropCard .cardPadder-backdrop {
+            padding-bottom: 0 !important;
+            aspect-ratio: 16/9 !important
+        }
+
+        .scenesSection .backdropCard .cardOverlayContainer,
+        .videoosd-tabcontainers .backdropCard .cardOverlayContainer {
+            padding-bottom: 0 !important;
+            aspect-ratio: 16/9 !important
+        }
+
+        .view.flex.flex-direction-row.page:not(.withTabs) .backdropCard .cardPadder-backdrop:not(.mediaStreamPadder):not(.mediaStreamPadder-tv):not(.cardOverlayContainer),
+        .view.flex.flex-direction-row.page:not(.withTabs) .backdropCard .cardPadder-smallBackdrop,
+        .tabContent .virtualScrollItem.backdropCard:not(.wideSpotlightCard) .cardPadder-backdrop:not(.mediaStreamPadder):not(.mediaStreamPadder-tv):not(.cardOverlayContainer),
+        .tabContent .resumeSection .backdropCard:not(.wideSpotlightCard) .cardPadder-backdrop:not(.mediaStreamPadder):not(.mediaStreamPadder-tv):not(.cardOverlayContainer),
+        .tabContent .backdropCard .cardPadder-smallBackdrop,
+        .horizontalSection .backdropCard:not(.wideSpotlightCard) .cardPadder-backdrop:not(.mediaStreamPadder):not(.mediaStreamPadder-tv):not(.cardOverlayContainer),
+        .horizontalSection .backdropCard:not(.wideSpotlightCard) .cardPadder-smallBackdrop {
+            padding-bottom: 0 !important;
+            aspect-ratio: var(--Backdrop-ratio)
+        }
+
+        .view.flex.flex-direction-row.page:not(.withTabs) .backdropCard .cardOverlayContainer:not(.mediaStreamPadder):not(.mediaStreamPadder-tv),
+        .horizontalSection .backdropCard .cardOverlayContainer:not(.mediaStreamPadder):not(.mediaStreamPadder-tv),
+        .tabContent .virtualScrollItem.backdropCard .cardOverlayContainer:not(.mediaStreamPadder):not(.mediaStreamPadder-tv),
+        .tabContent .resumeSection .backdropCard .cardOverlayContainer:not(.mediaStreamPadder):not(.mediaStreamPadder-tv) {
+            padding-bottom: 0 !important;
+            aspect-ratio: var(--Backdrop-ratio-org)
+        }
+
+
+        .cardPadder-overflowPortrait,
+        .cardPadder-portrait,
+        .horizontalSection .cardPadder-portrait,
+        .portraitCard .cardPadder-portrait {
+            padding-bottom: 0 !important;
+            aspect-ratio: var(--Portrait-ratio) !important
+        }
+
+        .cardPadder-fourThree {
+            padding-bottom: 0 !important;
+            aspect-ratio: var(--Backdrop-ratio) !important
+        }
+
+        .cardPadder-banner {
+            padding-bottom: 0 !important;
+            aspect-ratio: 1000/500 !important
+        }
+    }
+
+    /*修改最大化时卡片数量，从而达到放大图片的目的*/
+    /*竖向图片大小
+@media (min-width: 115em){
+.portraitCard, .smallBackdropCard, .squareCard {
+    width: 14.285714285714285714285714285714%;
+}
+.portraitCard-horiz, .squareCard-horiz {
+    width: 13.14285714285714vw;
+}
+}
+*/
+    /*横向图片大小*/
+    /*@media (min-width: 120em){
+.backdropCard {
+    width: 20%;
+}
+.backdropCard-horiz{
+    width: 19vw;
+}
+}
+@media (min-width: 95em){
+.backdropCard-horiz {
+    width: 19vw;
+}
+}
+*/
+
+    @supports (width:max(10em, 5vw)) {
+        .backdropCard {
+            width: calc(100% / max((var(--backdrop-cards) + var(--user-cards-size-adjust) + 2 + var(--app-cards-size-adjust)), 1));
+        }
+
+        .backdropCard-horiz {
+            width: calc(92vw / max((var(--backdrop-cards) + 2 + var(--user-cards-size-adjust)), 1));
+        }
+
+        .smallBackdropCard {
+            width: calc(100% / max((var(--small-backdrop-cards) + 1 + var(--user-cards-size-adjust) + var(--app-cards-size-adjust)), 1));
+        }
+
+        .fourThreeCard {
+            width: calc(100% / max((var(--four-three-cards) + var(--user-cards-size-adjust) + 2 + var(--app-cards-size-adjust)), 2));
+        }
+
+        .bannerCard {
+            width: calc(100% / max((var(--banner-cards) + var(--user-cards-size-adjust) + 2 + var(--app-cards-size-adjust)), 1));
+        }
+
+        .smallSideFooterCard {
+            width: calc(100% / max((var(--small-sidefooter-cards) + var(--user-cards-size-adjust) + 2 + var(--app-cards-size-adjust)), 2));
+        }
+
+        .portraitCard {
+            width: calc(100% / max((var(--portrait-cards) + var(--user-cards-size-adjust) + var(--app-cards-size-adjust)), 4));
+        }
+    }
+
+    .portraitCard-horiz {
+        width: calc(92vw / max((var(--portrait-cards) + var(--user-cards-size-adjust)), 4));
+    }
+
+    .fourThreeCard-horiz {
+        width: calc(92vw / max((var(--four-three-cards) + 2 + var(--user-cards-size-adjust)), 2));
+    }
+}
+
+.cardOverlayButton-br {
+    font-size: calc(10% *max((var(--portrait-cards) - var(--user-cards-size-adjust) + var(--app-cards-size-adjust)), 5));
+}
+
+/*修改主页我的媒体卡片大小
+@media (min-width: 100em){
+.smallBackdropCard{
+    width: 20%;
+}
+}
+*/
+/*卡片无边框时*/
+.view.flex.flex-direction-row.page:not(.withTabs) .backdropCard .cardPadder-backdrop:not(.mediaStreamPadder):not(.mediaStreamPadder-tv):not(.cardOverlayContainer),
+.view.flex.flex-direction-row.page:not(.withTabs) .backdropCard .cardPadder-smallBackdrop,
+.tabContent .virtualScrollItem.backdropCard:not(.wideSpotlightCard) .cardPadder-backdrop:not(.mediaStreamPadder):not(.mediaStreamPadder-tv):not(.cardOverlayContainer),
+.tabContent .resumeSection .backdropCard:not(.wideSpotlightCard) .cardPadder-backdrop:not(.mediaStreamPadder):not(.mediaStreamPadder-tv):not(.cardOverlayContainer),
+.tabContent .backdropCard:not(.wideSpotlightCard) .cardPadder-smallBackdrop,
+.horizontalSection .backdropCard:not(.wideSpotlightCard) .cardPadder-backdrop:not(.mediaStreamPadder):not(.mediaStreamPadder-tv):not(.cardOverlayContainer),
+.horizontalSection .backdropCard:not(.wideSpotlightCard) .cardPadder-smallBackdrop {
+    padding-bottom: var(--Backdrop-padding);
+    #contain: content;
+    #--card-background: none;
+}
+
+.cardPadder-overflowPortrait,
+.cardPadder-portrait,
+.horizontalSection .cardPadder-portrait,
+.portraitCard .cardPadder-portrait {
+    padding-bottom: var(--Portrait-padding);
+    #contain: content;
+    #--card-background: none;
+}
+
+.horizontalSection .cardPadder-margin.cardPadder-portrait,
+.cardPadder-margin.cardPadder-portrait {
+    margin-bottom: var(--Portrait-padding);
+}
+
+.cardPadder-margin.cardPadder-backdrop,
+.cardPadder-margin.cardPadder-smallBackdrop {
+    margin-bottom: 56.25%;
+}
+
+/*图片原比例填充满卡片显示*/
+
+.coveredImage,
+.cardImageContainer {
+    -webkit-background-size: cover !important;
+    background-size: cover !important;
+    background-position: center center !important;
+    -o-object-fit: cover !important;
+    object-fit: cover !important;
+    object-position: center center !important;
+}
+
+
+.backdropCard.item-multiselected .cardImageContainer {
+    -webkit-transform: none !important;
+    transform: none !important;
+}
+
+.view.flex.flex-direction-row.page:not(.withTabs) .backdropCard.item-multiselected .cardBox,
+.horizontalSection .backdropCard.item-multiselected .cardBox,
+.tabContent .backdropCard.item-multiselected .cardBox {
+    -webkit-transform: translateZ(0) scale3d(.9, .9, 1) !important;
+    transform: translateZ(0) scale3d(.9, 0.9, 1) !important;
+}
+
+.audioVideoMediaInfo .cardOverlayContainer {
+    position: absolute;
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: 0;
+    aspect-ratio: auto !important;
+    padding-bottom: auto !important;
+}
+
+/*封面卡片四角弧度*/
+
+div.cardScalable {
+    border-radius: .0rem;
+}
+
+
+.cardImageContainer {
+    -webkit-border-radius: .0em;
+    border-radius: .0rem;
+}
+
+div.sessionNowPlayingContent {
+    border-radius: .0rem;
+}
+
+div.activeSession .cardContent {
+    border-radius: .0rem;
+}
+
+div.paperList {
+    border-radius: .0rem;
+}
+
+div.cardBox.visualCardBox {
+    border-radius: .0rem;
+}
+
+
+div.visualCardBox .cardContent {
+    border-bottom-left-radius: .0rem;
+    border-bottom-right-radius: .0rem;
+}
+
+
+
+.chkCardSelectContainer {
+    left: auto !important;
+    right: 0 !important;
+}
+
+.cardPadder-banner {
+    padding-bottom: 50%;
+}
+
+div.listItemImageContainer {
+    border-radius: .0em;
+}
+
+/*
+.listViewUserDataButton.playstatebutton-icon {
+  color: #fff !important;
+}
+.listViewUserDataButton.playstatebutton-icon:hover, .listViewUserDataButton.playstatebutton-icon:not(.playstatebutton-icon-played):hover, .listViewUserDataButton.playstatebutton-icon.playstatebutton-icon-played, .listViewUserDataButton.playstatebutton-icon {
+  color: #fff !important;
+  background: transparent !important;
+  border-color: transparent !important;
+}
+*/
+/* Media list unplayed badge */
+i.listItemIndicator.listItemPlayedIndicator.playedIndicator.md-icon {
+    display: none;
+}
+
+.virtualScrollItem.listItem.itemAction.focusable.listItemCursor.listItem-hoverable.listItem-largeImage.listItem-withContentWrapper.detailsListItem,
+.listItem.itemAction.focusable.listItemCursor.listItem-hoverable.listItem-withContentWrapper.detailsListItem {
+    overflow: hidden !important;
+}
+
+.listViewUserDataButton.playstatebutton-icon {
+    overflow: visible !important;
+}
+
+.listViewUserDataButton[data-played="false"]:before {
+    width: 8px;
+    height: 500px;
+    transform: unset;
+    content: '';
+    background: #e5a00d !important;
+    position: absolute;
+    border-style: solid;
+    border-width: 1px;
+    border-color: rgba(255, 255, 255, 0.2);
+    top: -200px;
+    right: -85px;
+    z-index: 1;
+    font-size: 10px;
+    padding: 2px;
+}
+
+.trackList[data-monitor="PlaylistItems"] .listViewUserDataButton[data-played="false"]:before {
+    right: -140px !important;
+    /* Playlist fix */
+}
+
+.listViewUserDataButton[data-played="true"]:before {
+    width: 8px;
+    height: 500px;
+    transform: unset;
+    content: '';
+    background: red !important;
+    position: absolute;
+    border-style: solid;
+    border-width: 1px;
+    border-color: rgba(255, 255, 255, 0.2);
+    top: -200px;
+    right: -85px;
+    z-index: 1;
+    font-size: 10px;
+    padding: 2px;
+}
+
+.trackList[data-monitor="PlaylistItems"] .listViewUserDataButton[data-played="true"]:before {
+    right: -140px !important;
+    /* Playlist fix */
+}
+
+@media (min-width: 100em) {
+
+    .formDialogContent .portraitCard,
+    .formDialogContent .smallBackdropCard,
+    .formDialogContent .squareCard {
+        width: 14.32%;
+    }
+}
+
+
+/* */
+.trackList .listItemBody {
+    padding: .35em 1.3em;
+}
+
+.detailImageContainer .cardBox.cardBox-touchzoom {
+    margin: 0 !important;
+}
+
+.detailImageContainer-main {
+    margin-right: 2.5em !important;
+    margin-bottom: 10px !important;
+}
+
+.trackList .listItemImageContainer {
+    box-shadow: 5px 5px 10px -5px rgb(0 0 0 / 50%)
+}
+
+.detailImageContainer .card.detailImageContainerCard.card-hoverable {
+    box-shadow: 5px 5px 17px -5px rgb(0 0 0 / 50%)
+}
+
+/* Playlists */
+.trackList[data-monitor="PlaylistItems"] .listItemImageContainer {
+    max-height: 45px;
+}
+
+.listItemImageContainer-large.listItemImageContainer-fourThree {
+    width: 11vw !important;
+    height: 7vw !important;
+    aspect-ratio: auto !important;
+}
+
+.listItemImage-backdrop {
+    -webkit-background-size: cover !important;
+    background-size: cover !important;
+    object-fit: cover !important;
+}
+
+.trackList .detailsListItem.listItem {
+    -webkit-backdrop-filter: saturate(1) blur(3em);
+    backdrop-filter: saturate(1) blur(3em);
+    background: #ffffff15 !important;
+    padding: 10px 30px;
+    border-radius: 5px;
+    border-bottom: 1px solid #ffffff15;
+}
+
+.trackList .detailsListItem.listItem:nth-child(odd) {
+    background: #ffffff10 !important;
+}
+
+.trackList.vertical-list .listItemImageContainer button.listItemImageButton.itemAction.paper-icon-button-light {
+    opacity: 0;
+}
+
+.trackList.vertical-list .listItemImageContainer:hover button.listItemImageButton.itemAction.paper-icon-button-light {
+    opacity: 1;
+    -webkit-transition: opacity .1s ease-in-out;
+    -o-transition: opacity .1s ease-in-out;
+    transition: opacity .1s ease-in-out;
+}
+
+.listItem-hoverable:hover,
+.listItem-hoverable:hover .chkListItemSelectContainer {
+    border-color: #ffffff15 !important;
+}
+
+.detailsListItem.focusable.listItem-hoverable:hover,
+.detailsListItem.focusable.listItem-hoverable:hover .chkListItemSelectContainer {
+    background: transparent !important;
+}
+
+.trackList .detailsListItem.focusable.listItem {
+    -webkit-backdrop-filter: saturate(1) blur(3em);
+    backdrop-filter: saturate(1) blur(3em);
+    background: #ffffff15 !important;
+    padding: 5px 30px;
+    border-radius: 5px;
+    border-bottom: 1px solid #ffffff15;
+    box-sizing: border-box;
+}
+
+.trackList .detailsListItem.focusable.listItem:nth-child(odd) {
+    background: #ffffff10 !important;
+}
+
+.chkListItemSelectContainer {
+    font-size: 50% !important;
+}
+
+@media (hover: hover) and (pointer: fine) {
+    .chkListItemSelectContainer {
+        left: -4em !important;
+    }
+}
+
+.listItem-border {
+    border-bottom-width: 0 !important;
+}
+
+
+
+/* 侧边导航栏自动收缩-START */
+
+.jstree-children,
+.jstree-container-ul,
+.jstree-node {
+
+    margin-left: 2em !important;
+
+}
+
+/* Background of item(s) when multi-selected */
+.item-multiselected .cardScalable.cardPadder-portrait,
+.item-multiselected .cardScalable.cardPadder-backdrop,
+.item-multiselected .cardScalable.cardPadder-square {
+    background: rgb(255 255 255 / 15%) !important;
+    border: 2px solid #fff;
+}
+
+.card-hoverable.focusable:hover .cardOverlayContainer {
+    border: 2px solid var(--theme-primary-color);
+    //border-radius: 0px;
+}
+
+.selectionCommandsPanel {
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    box-sizing: border-box !important;
+    border-radius: 40px !important;
+    #margin: auto !important;
+    margin-left: 10em !important;
+    margin-right: 4em !important;
+    margin-top: 10px !important;
+    margin-bottom: 10px !important;
+    #width: 100% !important;
+    max-width: 100% !important;
+    font-size: 12px !important;
+    border: 0 !important;
+    //background-color: rgb(255 255 255 / 15%)!important;
+    box-shadow: 0px 0px 10px 0px rgb(0 0 0 / 40%) !important;
+    -webkit-box-shadow: 0px 0px 10px 0px rgb(0 0 0 / 40%) !important;
+    -moz-box-shadow: 0px 0px 10px 0px rgb(0 0 0 / 40%) !important;
+    -webkit-backdrop-filter: saturate(1) blur(1.5em) !important;
+    backdrop-filter: saturate(1) blur(1.5em) !important;
+}
+
+
+.skinHeader-withfulldrawer:not(.mainDrawer-mini) {
+    padding: 1em 1em 1em 1em !important;
+    margin: 0 auto;
+    //backdrop-filter: none!important;
+    //background: #00000000!important;
+    border-bottom: 0.08em solid rgba(255, 255, 255, .08);
+}
+
+@media (min-width: 10em) {
+    .skinHeader-withfulldrawer:not(.mainDrawer-mini) {
+        padding: 1em 2em 1em 6em !important;
+    }
+
+
+    .mainDrawer.drawer-docked:not(.mainDrawer-mini) {
+        width: 5.5em;
+        padding: 1em 1.1em 1em;
+        transition: 0.2s;
+        transition-delay: 0.5s;
+        z-index: 999 !important;
+        -webkit-backdrop-filter: saturate(1.5) blur(4em);
+        backdrop-filter: saturate(1.5) blur(4em);
+    }
+
+    .mainDrawer.drawer-docked:not(.mainDrawer-mini):hover {
+        width: 17em;
+    }
+
+    .mainDrawer.drawer-docked:not(.mainDrawer-mini) .navDrawerLogo {
+        display: none;
+    }
+
+    .mainDrawer.drawer-docked:not(.mainDrawer-mini) .navDrawerHeader {
+        margin: 0em 0 0.5em;
+    }
+
+    .mainDrawer.drawer-docked:not(.mainDrawer-mini) button.btnPinNavDrawer {
+        margin: 0 auto !important;
+        position: static !important;
+        font-size: inherit !important;
+    }
+
+    .mainDrawer.drawer-docked:not(.mainDrawer-mini) .emby-collapsible-title {
+        transition: opacity 0.2s 0.7s ease;
+        opacity: 0;
+        font-size: 0;
+        transition: 0.2s;
+        transition-delay: 0.5s;
+    }
+
+    .mainDrawer.drawer-docked:not(.mainDrawer-mini):hover .emby-collapsible-title {
+        opacity: 0.5;
+        display: block;
+        font-size: 1em;
+    }
+
+    .mainDrawer.drawer-docked:not(.mainDrawer-mini) button#expandButton i {
+        transition: opacity 0.2s 0.7s ease;
+        opacity: 0;
+        font-size: 0;
+        transition: 0.2s;
+        transition-delay: 0.5s;
+    }
+
+    .mainDrawer.drawer-docked:not(.mainDrawer-mini):hover button#expandButton i {
+        opacity: 1;
+        font-size: 1.5em;
+    }
+
+    .mainDrawer.drawer-docked:not(.mainDrawer-mini) div[data-listtype="playlists"] {
+        transition: opacity 0.2s 0.7s ease;
+        opacity: 0;
+        font-size: 0;
+        transition: 0.2s;
+        transition-delay: 0.5s;
+    }
+
+    .mainDrawer.drawer-docked:not(.mainDrawer-mini):hover div[data-listtype="playlists"] {
+        opacity: 1;
+        font-size: 1em;
+    }
+
+    .mainDrawer.drawer-docked:not(.mainDrawer-mini) .emby-collapsible-button-collapsed {
+        border-width: 0 !important;
+    }
+
+
+}
+
+.headerLeft .pageTitleWithDefaultLogo {
+    display: none !important;
+}
+
+.skinHeader .headerLeft {
+    padding-left: 0 !important;
+}
+
+
+@media (min-width: 10em) {
+    .skinBody-withFullDrawer:not(.mainDrawer-mini) .padded-right:not(.dialogContentInner) {
+        padding-right: 3rem !important;
+    }
+
+    .skinBody-withFullDrawer:not(.mainDrawer-mini) .padded-left:not(.dialogContentInner) {
+        padding-left: 5rem !important;
+    }
+
+    .skinBody-withFullDrawer:not(.mainDrawer-mini) .trackList.padded-left {
+        padding-left: 3rem !important;
+    }
+
+    .skinBody-withFullDrawer:not(.mainDrawer-mini) .withTabs.page,
+    .skinBody-withFullDrawer .page {
+        padding-left: 0rem !important;
+    }
+
+    .backdropContainer-withfulldrawer,
+    .skinBody-withFullDrawer:not(.mainDrawer-mini) .page {
+        left: 4rem !important;
+    }
+}
+
+/* 侧边导航栏自动收缩-END */
+
+/* Video player */
+
+.skinHeader.semiTransparent::before {
+    display: none;
+    /* Remove gradient shadow behind media logo */
+}
+
+.skinHeader.videoOsdHeader {
+    margin-top: calc(1.2em + env(safe-area-inset-top, 0)) !important;
+    padding-top: 0 !important;
+    //right: unset;
+}
+
+.videoOsdHeader button.headerBackButton {
+    margin-left: 30px !important;
+}
+
+.iconOsd.volumeOsd {
+    display: none !important;
+}
+
+.emby-slider-background-lower {
+    background-color: var(--theme-primary-color) !important;
+}
+
+.emby-slider::-webkit-slider-thumb {
+    background: var(--theme-primary-color) !important;
+    width: 1.1em !important;
+    height: 1.1em !important;
+}
+
+@media (min-width: 50em) {
+
+    .videoOsd-customFont,
+    .videoOsd-customFont-x3,
+    .videoOsd-customFont-x2,
+    .videoOsd-customFont-x0 {
+        font-size: 1.8em !important;
+    }
+
+    .scrollSlider.itemsContainer.videoosd-padded-left.videoosd-padded-right.scrollX.hiddenScrollX.scrollSliderX.emby-scrollbuttons-scrollSlider.virtualItemsContainer {
+        #margin-top: 1%;
+    }
+
+    .videoosd-bottom-with-opentab .videoOsdBottom-tabs {
+        -webkit-transition: opacity .1s ease-in-out !important;
+        -o-transition: opacity .1s ease-in-out !important;
+        transition: opacity .1s ease-in-out !important;
+        background: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0)), to(rgba(0 0 0 / 95%))) !important;
+        background: -webkit-linear-gradient(rgba(0, 0, 0, 0), rgb(0 0 0 / 95%)) !important;
+        background: -o-linear-gradient(rgba(0, 0, 0, 0), rgb(0 0 0 / 95%)) !important;
+        background: linear-gradient(rgb(0 0 0 / 95%), rgba(0, 0, 0, 0)) !important;
+        width: 100% !important;
+        justify-content: flex-end !important;
+    }
+}
+
+.videoOsdBottom .emby-slider-background {
+    height: 0.4em;
+    margin-top: -3px;
+    font-size: 2em;
+}
+
+.videoOsdBottom .videoOsdSecondaryText-video {
+    display: none;
+    color: #fff;
+}
+
+.videoOsdBottom .videoOsdSecondaryText {
+    margin-left: 0 !important;
+}
+
+.videoOsdBottom .videoOsdParentTitle {
+    display: none;
+}
+
+.videoOsdBottom .paper-icon-button-light {
+    margin: 0 0.2em;
+}
+
+.videoOsdBottom .paper-icon-button-light:hover {
+    background: #ffffff30 !important;
+}
+
+.videoOsdBottom .videoosd-tabcontainers .paper-icon-button-light.emby-scrollbuttons-scrollbutton:hover {
+    background: #fff !important;
+}
+
+.videoOsdBottom .videoOsdPositionText,
+.videoOsdBottom .videoOsdDurationText {
+    font-weight: bold;
+}
+
+.videoOsdBottom .videoOsd-endsAtText {
+    display: none;
+    color: #fff;
+    font-weight: 500;
+}
+
+.videoOsdBottom h1.videoOsdParentTitle.videoOsdParentTitle-large.videoOsdParentTitle-larger,
+.videoOsdBottom .flex.videoOsdSecondaryText.secondaryText.flex-wrap-wrap.videoOsdSecondaryText-withparentname {
+    display: none;
+}
+
+.videoOsdBottom-video {
+    -webkit-transition: opacity .1s ease-in-out !important;
+    -o-transition: opacity .1s ease-in-out !important;
+    transition: opacity .1s ease-in-out !important;
+    background: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0)), to(rgba(0 0 0 / 95%))) !important;
+    background: -webkit-linear-gradient(rgba(0, 0, 0, 0), rgb(0 0 0 / 95%)) !important;
+    background: -o-linear-gradient(rgba(0, 0, 0, 0), rgb(0 0 0 / 95%)) !important;
+    background: linear-gradient(rgba(0, 0, 0, 0), rgb(0 0 0 / 95%)) !important;
+}
+
+.videoOsdBottom .videoOsdPositionContainer {
+    order: 1;
+    margin-bottom: 20px;
+}
+
+.flex-direction-column.videoOsdText.videoOsdText-customFont:not(.videoOsdText-remotecontrol) {
+    -webkit-box-orient: unset !important;
+    -webkit-box-direction: unset !important;
+    -webkit-flex-direction: unset !important;
+    flex-direction: unset !important;
+}
+
+.videoOsdSecondaryText {
+    line-height: 2.5;
+    margin-left: 20px;
+    -webkit-box-align: unset !important;
+    -webkit-align-items: unset !important;
+    align-items: unset !important;
+}
+
+.videoOsdTitle {
+    line-height: 2.3;
+}
+
+.videoPlayerContainer {
+    background-color: #000 !important;
+}
+
+.videoOsdBottom {
+    padding-top: 10px !important;
+}
+
+.videoOsdText {
+    margin-bottom: 0 !important;
+}
+
+.videoOsdHeader button.headerCastButton {
+    display: none;
+}
+
+.videoosd-info-overview {
+    max-width: 600px;
+}
+
+/* Mobile view */
+@media (orientation: portrait) and (pointer: coarse) and (min-height: 20em) {
+    .videoOsdBottom-buttons .videoOsd-centerButtons-autolayout {
+        top: -20% !important;
+    }
+}
+
+@media (orientation: landscape) and (pointer: coarse) and (min-height: 20em) {
+    .videoOsdBottom-buttons .videoOsd-centerButtons-autolayout {
+        top: unset !important;
+        margin-top: 0 !important;
+        font-size: inherit !important;
+        width: 50% !important;
+        left: 10% !important;
+    }
+}
+
+@media (min-width: 50em) {
+
+    /* Right align logo and move down */
+    .videoOsdHeader .pageTitle {
+        min-height: 80px;
+        max-width: 3000px;
+        min-width: 1000px;
+        width: 100% !important;
+        margin-left: 0.2em !important;
+    }
+
+    .skinHeader.focuscontainer-x.headroom.videoOsdHeader.semiTransparent:not(.videoOsdHeader-remotecontrol) {
+        position: fixed;
+        top: unset !important;
+        bottom: 130px;
+    }
+
+    .videoOsdHeader .headerLeft {
+        width: 100%;
+    }
+
+    .videoOsdHeader.skinHeader.semiTransparent {
+        background: unset !important;
+    }
+
+    .videoOsdBottom {
+        min-height: 150px;
+    }
+
+
+
+
+    /* Slider bubble thumb preview */
+    .videoOsdBottom .sliderBubble {
+        top: -5px;
+        background: none;
+        color: #333;
+        border-radius: 10px;
+        z-index: 2 !important;
+        padding: 0 !important;
+    }
+
+    .videoOsdBottom .videoOsdVolumeSliderWrapper .sliderBubble {
+        top: -5px;
+        background: #ffffff !important;
+        color: #333 !important;
+        border-radius: 5px;
+        z-index: 2 !important;
+        box-shadow: none;
+        height: auto !important;
+        width: auto !important;
+        padding: 10px;
+    }
+
+    .videoOsdBottom .sliderBubbleText {
+        font-size: 1em;
+        padding: .3em .55em;
+        border-radius: 5px;
+        background: #fff;
+        color: #333 !important;
+    }
+
+    .emby-slider-thumb {
+        width: 25px !important;
+        height: 25px !important;
+        margin-top: -11px !important;
+    }
+
+    .emby-slider:focus-visible+div+.emby-slider-thumb,
+    .emby-slider:hover+div+.emby-slider-thumb {
+        -webkit-transform: scale(1.5) !important;
+        transform: scale(1.5) !important;
+    }
+
+    .sliderBubble.dialog.chapterThumbImageContainer {
+        filter: brightness(1.1);
+        box-shadow: rgb(0 0 0 / 70%) 0px 5px 30px 5px !important;
+        height: 170px !important;
+        width: auto !important;
+        background-size: 135% !important;
+        background-repeat: no-repeat !important;
+        background-position: center bottom !important;
+        background-color: #111 !important;
+        border-radius: 5px !important;
+        border: 0px !important;
+        overflow: hidden;
+    }
+
+    .chapterThumbTextContainer .chapterThumbText:first-child {
+        display: none;
+    }
+
+    .chapterThumbTextContainer {
+        background: #bfbfbf75 !important;
+        color: #fff !important;
+        width: 100% !important;
+        border-radius: 10px !important;
+        -webkit-backdrop-filter: saturate(1.5) blur(4em) !important;
+        backdrop-filter: saturate(1.5) blur(2em) !important;
+        box-sizing: border-box;
+        padding: 0.5em 0.7em;
+        font-weight: normal !important;
+        font-size: 1.3em !important;
+    }
+
+    .videoOsdVolumeControls-showhover>.videoOsdVolumeSliderWrapper {
+        background: rgba(56, 56, 56, .76) !important;
+        -webkit-backdrop-filter: blur(4em) saturate(1.8) !important;
+        backdrop-filter: blur(4em) saturate(1.8) !important;
+        box-shadow: 0px 0px 50px 0px rgb(0 0 0 / 90%) !important;
+        -webkit-box-shadow: 0px 0px 50px 0px rgb(0 0 0 / 90%) !important;
+        -moz-box-shadow: 0px 0px 50px 0px rgba(0, 0, 0, 0.9) !important;
+        top: 0em !important;
+    }
+}
+
+
+.videoOsdBottom-tabs {
+    position: fixed;
+    top: 0;
+    right: 0;
+}
+
+.videoosd-tabcontainers.flex {
+    z-index: 99999999 !important;
+    position: relative;
+    position: fixed;
+    top: 100px;
+    left: 0;
+    right: 0;
+    bottom: unset !important;
+    margin: 0 auto;
+    width: 95%;
+    box-sizing: content-box;
+    height: 43vh !important;
+    max-height: 310px !important;
+    box-shadow: 0px 0px 50px 0px rgba(0, 0, 0, 0.9);
+    -webkit-box-shadow: 0px 0px 50px 0px rgba(0, 0, 0, 0.9);
+    -moz-box-shadow: 0px 0px 50px 0px rgba(0, 0, 0, 0.9);
+}
+
+.videoosd-tab.videoosd-itemstab .backdropCard-horiz {
+    width: 20vw !important;
+}
+
+.videoosd-tabcontainers.flex.videoosd-tabcontainers-hidden {
+    height: 0 !important;
+}
+
+.videoosd-tab .epgVirtualScrollerScrollContainer-both .epgRow .guideChannelText {
+    display: none !important;
+}
+
+.videoosd-tab .epgVirtualScrollerScrollContainer-both .epgRow .guideChannelImage-condensed {
+    width: 100% !important;
+    height: 100% !important;
+    background-position: center center !important;
+}
+
+.videoosd-poster.justify-content-center {
+    -webkit-box-pack: start !important;
+    -webkit-justify-content: flex-start !important;
+    justify-content: flex-start !important;
+}
+
+.videoosd-tab {
+    padding-left: 30px !important;
+    padding-right: 30px !important;
+}
+
+.videoosd-tabBackground-backdropfilter,
+.videoosd-tab {
+    background: rgb(0 0 0 / 30%) !important;
+    -webkit-backdrop-filter: blur(4em) saturate(1) !important;
+    backdrop-filter: blur(4em) saturate(1) !important;
+}
+
+.videoosd-tab-button {
+    -webkit-box-shadow: 0px 0px 10px 0px rgb(0 0 0 / 50%) !important;
+    -moz-box-shadow: 0px 0px 10px 0px rgb(0 0 0 / 50%) !important;
+    -webkit-backdrop-filter: blur(0.5em) saturate(0.5) !important;
+    backdrop-filter: blur(0.5em) saturate(0.5) !important;
+    background: #ffffff30 !important;
+    font-size: 1.2em !important;
+    text-shadow: 2px 2px 15px #333;
+    padding: 13px 30px !important;
+    transition: background 0.5s !important;
+    border: 2px solid transparent;
+    margin: 10px 7px 10px 7px;
+}
+
+.videoosd-tab-button:hover {
+    background: #ffffff70 !important;
+    color: #fff !important;
+}
+
+.videoosd-tab-button.emby-tab-button-active {
+    background: #ffffff70 !important;
+    color: #fff !important;
+}
+
+.videoosd-bottom-with-opentab .videoosd-tab-button {
+    background: transparent;
+    color: #fff !important;
+    border: 2px solid #ffffff80;
+}
+
+.videoosd-bottom-with-opentab .videoosd-tab-button.emby-tab-button-active {
+    background: #fff;
+    color: #fff !important;
+    border: 2px solid transparent;
+}
+
+/* FIX: OSD visible when info or chapter is toggled */
+.videoosd-bottom-with-opentab .flex.flex-direction-row.align-items-center.flex-shrink-zero.videoosd-transportbuttons,
+.videoosd-bottom-with-opentab .flex.flex-shrink-zero.justify-content-flex-end.flex-wrap-wrap.videoOsdBottom-buttons-right,
+.videoosd-bottom-with-opentab .flex.flex-direction-row.align-items-center.justify-content-center.videoOsdPositionContainer.focuscontainer-x {
+    display: flex !important;
+}
+
+.videoOsdBottom.flex.videoOsdBottom-remotecontrolcontentvisible.videoOsdBottom-video,
+.videoOsdBottom.flex.videoOsdBottom-remotecontrolcontentvisible.videoOsdBottom-video.videoosd-bottom-with-opentab {
+    padding: 1.25em calc(min(5ch, 2%) + env(safe-area-inset-right, 0)) calc(min(0.25em, 1vh) + env(safe-area-inset-bottom, 0)) calc(min(1ch, 2%) + env(safe-area-inset-left, 0)) !important;
+    background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, .8)) !important;
+}
+
+
+
+.videoosd-guidetab .programCellInner {
+    background: rgb(255 255 255 / 20%) !important;
+}
+
+.videoosd-tab .cardBox .cardImage {
+    background: rgb(51 51 51 / 50%);
+}
+
+.videoosd-tabcontainers .videoosd-tab .cardOverlayContainer {
+    box-shadow: 0px 0px 45px 5px rgb(255 255 255 / 15%);
+    -webkit-box-shadow: 0px 0px 45px 5px rgb(255 255 255 / 15%);
+    -moz-box-shadow: 0px 0px 45px 5px rgba(255, 255, 255, 0.15);
+}
+
+@media (orientation: landscape) and (min-height: 30em) and (min-width: 60em) {
+    .videoOsdBottom-tabs {
+        margin-left: 0 !important;
+        padding-top: 30px !important;
+        padding-bottom: 0.5em !important;
+    }
+}
+
+
+
+/* Intro skip */
+.btnSkipIntro {
+    -webkit-box-shadow: 0px 0px 15px 0px rgb(0 0 0 / 70%) !important;
+    -moz-box-shadow: 0px 0px 15px 0px rgb(0 0 0 / 70%) !important;
+    -webkit-backdrop-filter: blur(0.5em) saturate(0.5) !important;
+    backdrop-filter: blur(0.5em) saturate(0.5) !important;
+    background: #ffffff30 !important;
+    font-size: 1.2em !important;
+    padding: 13px 30px !important;
+    transition: background 0.5s;
+}
+
+.btnSkipIntro:hover {
+    background: #ffffff70 !important;
+}
+
+.videoOsdBottom-tabs .btnCloseTabContent.hide {
+    display: block !important;
+    opacity: 0 !important;
+}
+
+.mouseIdle .videoOsd-customFont.btnSkipIntro {
+    -moz-animation: cssAnimation 1s ease-in 0.1s forwards;
+    -webkit-animation: cssAnimation 1s ease-in 0.1s forwards;
+    -o-animation: cssAnimation 1s ease-in 0.1s forwards;
+    animation: cssAnimation 1s ease-in 0.1s forwards;
+    -webkit-animation-fill-mode: forwards;
+    animation-fill-mode: forwards;
+}
+
+@keyframes cssAnimation {
+    to {
+        opacity: 0;
+    }
+}
+
+@-webkit-keyframes cssAnimation {
+    to {
+        opacity: 0;
+    }
+}
+
+
+/* Video player - Up Next */
+.mouseIdle .upNextDialog-poster,
+.mouseIdle h3.upNextDialog-title,
+.mouseIdle .btnHide.upNextDialog-button {
+    display: none !important;
+}
+
+.mouseIdle .upNextContainer.upNextDialog {
+    background: transparent !important;
+    backdrop-filter: none !important;
+    box-shadow: none !important;
+}
+
+.upNextContainer.upNextDialog {
+    max-width: 95%;
+    margin: 0px auto;
+    padding: 25px;
+    border-radius: 30px;
+    background: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0.3)), to(rgba(0, 0, 0, 0.3))) !important;
+    background: -webkit-linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)) !important;
+    background: -o-linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)) !important;
+    background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)) !important;
+    -webkit-backdrop-filter: saturate(1.5) blur(4em) !important;
+    backdrop-filter: saturate(1.5) blur(4em) !important;
+    box-shadow: 0px 5px 57px 35px rgb(0 0 0 / 70%)
+}
+
+.upNextDialog-buttons .btnStartNow,
+.upNextDialog-buttons .btnHide {
+    display: inline-block;
+    padding: 15px 40px;
+    text-transform: uppercase;
+    background: #333;
+    font-size: 1.1em;
+    margin-top: 10px;
+    margin: 5px;
+    width: 50%;
+    box-shadow: 5px 15px 37px -5px rgb(0 0 0 / 70%);
+}
+
+.upNextDialog-buttons .btnStartNow {
+    background: var(--theme-primary-color) !important;
+}
+
+img.upNextDialog-poster-img {
+    height: 100%;
+    width: auto;
+    max-height: 55px;
+    border-radius: 5px;
+    position: unset;
+}
+
+.upNextDialog-poster {
+    margin-right: 2em !important;
+    width: auto !important;
+    display: none;
+}
+
+.upNextContainer .upNextDialog-mediainfo {
+    display: none;
+}
+
+.upNextContainer .upNextDialog-overview {
+    display: none;
+}
+
+.upNextDialog-countdownText {
+    font-size: 30px !important;
+    line-height: 1.5 !important;
+    position: absolute;
+    right: 40px;
+    font-weight: 100 !important;
+    color: var(--theme-primary-color) !important;
+    overflow: hidden;
+    width: 40px;
+    height: 40px;
+}
+
+h3.upNextDialog-title {
+    font-size: 2em;
+    font-weight: 100;
+    margin: 0 !important;
+    margin-right: 2em !important;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    height: 50px;
+    width: 55%;
+    display: inline-block !important;
+}
+
+h2.upNextDialog-nextVideoText {
+    float: left;
+    font-size: 0;
+    margin: -10px 0 0 0 !important;
+    font-weight: 100;
+    opacity: 0.7;
+}
+
+@media (min-width: 1500px) {
+    .upNextContainer div.flex.flex-direction-column.flex-grow {
+        width: 100%;
+        display: block !important;
+    }
+
+    .upNextContainer.upNextDialog {
+        bottom: 30px;
+    }
+
+    .upNextDialog-poster {
+        display: block !important;
+    }
+
+    h2.upNextDialog-nextVideoText {
+        line-height: 50px;
+        position: absolute;
+        bottom: 30px;
+        right: 0px;
+    }
+
+    /* Reverse order of buttons */
+    .upNextDialog .upNextDialog-buttons {
+        display: unset;
+        width: auto;
+    }
+
+    .upNextDialog .btnStartNow {
+        float: right;
+        width: 250px;
+        margin-right: 80px;
+    }
+
+    .upNextDialog .btnHide {
+        float: right;
+        width: 250px;
+    }
+}
+
+
+div.darkContentContainer-item {
+    --theme-background: var(--main-bg-color);
+}
+
+.emby-select {
+    background: var(--card-background) !important;
+}
+
+.backgroundContainer,
+.dialog,
+html {
+    background-color: var(--main-bg-color) !important;
+}
+
+.paperList,
+.visualCardBox {
+    background-color: var(--card-background) !important;
+}
+
+:root {
+    --main-bg-color: radial-gradient(ellipse at center, #47918a 0%, #0b3161 100%) center center/cover no-repeat fixed;
+    --modal-bg-color: linear-gradient(-90deg, #47918a 0%, #0b3161 100%) center center/cover no-repeat fixed;
+    --modal-header-color: linear-gradient(-90deg, #47918a 0%, #0b3161 100%) center center/cover no-repeat fixed;
+    --modal-footer-color: linear-gradient(-90deg, #47918a 0%, #0b3161 100%) center center/cover no-repeat fixed;
+    --drop-down-menu-bg: #265c74;
+    --button-color: #009688;
+    --button-color-hover: #12afa0;
+    --button-text: #eee;
+    --button-text-hover: #FFF;
+    --accent-color: 18, 175, 160;
+    --accent-color-hover: rgb(var(--accent-color), .8);
+    --link-color: #0ed2bf;
+    --link-color-hover: #36e7d6;
+    --label-text-color: #fff;
+    --text: #ddd;
+    --text-hover: #fff;
+    --text-muted: #8dcfc9;
+    --arr-queue-color: #009688;
+    --plex-poster-unwatched: rgb(21, 213, 194);
+    --petio-spinner: invert(39%) sepia(98%) saturate(527%) hue-rotate(129deg) brightness(94%) contrast(101%);
+    --gitea-color-primary-dark-4: 18, 175, 160;
+    --overseerr-gradient: radial-gradient(ellipse at center, rgb(71, 145, 138, .9) 0%, rgb(11, 49, 97, .9) 100%) center center/cover no-repeat fixed;
+}
+
+::-webkit-input-placeholder {
+    color: var(--text-muted) !important;
+}
+
+:focus::-webkit-input-placeholder {
+    color: var(--text-hover) !important;
+}
+
+:-moz-placeholder {
+    color: var(--text-muted) !important;
+}
+
+:focus:-moz-placeholder {
+    color: var(--text-hover) !important;
+}
+
+::-moz-placeholder {
+    color: var(--text-muted) !important;
+}
+
+:focus::-moz-placeholder {
+    color: var(--text-hover) !important;
+}
+
+:-ms-input-placeholder {
+    color: var(--text-muted) !important;
+}
+
+:focus:-ms-input-placeholder {
+    color: var(--text-hover) !important;
+}
+
+:root {
+    --transparency-dark-05: rgba(0, 0, 0, .05);
+    --transparency-dark-10: rgba(0, 0, 0, .10);
+    --transparency-dark-15: rgba(0, 0, 0, .15);
+    --transparency-dark-25: rgba(0, 0, 0, .25);
+    --transparency-dark-35: rgba(0, 0, 0, .35);
+    --transparency-dark-40: rgba(0, 0, 0, .40);
+    --transparency-dark-45: rgba(0, 0, 0, .45);
+    --transparency-dark-50: rgba(0, 0, 0, .50);
+    --transparency-dark-55: rgba(0, 0, 0, .55);
+    --transparency-dark-60: rgba(0, 0, 0, .60);
+    --transparency-dark-65: rgba(0, 0, 0, .65);
+    --transparency-dark-70: rgba(0, 0, 0, .70);
+    --transparency-dark-75: rgba(0, 0, 0, .75);
+    --transparency-dark-80: rgba(0, 0, 0, .80);
+    --transparency-dark-85: rgba(0, 0, 0, .85);
+    --transparency-dark-90: rgba(0, 0, 0, .90);
+    --transparency-light-05: rgba(255, 255, 255, .05);
+    --transparency-light-10: rgba(255, 255, 255, .10);
+    --transparency-light-15: rgba(255, 255, 255, .15);
+    --transparency-light-20: rgba(255, 255, 255, .20);
+    --transparency-light-25: rgba(255, 255, 255, .25);
+    --transparency-light-30: rgba(255, 255, 255, .30);
+    --transparency-light-35: rgba(255, 255, 255, .35);
+    --transparency-light-45: rgba(255, 255, 255, .45);
+    --transparency-light-50: rgba(255, 255, 255, .50);
+    --transparency-light-55: rgba(255, 255, 255, .55);
+}
+
+:root {
+    --theme-primary-color: var(--accent-color);
+    --theme-text-color: var(--text);
+    --theme-text-color-opaque: var(--text-hover);
+    --theme-accent-text-color: var(--accent-color);
+    --theme-primary-color-lightened: var(--accent-color-hover);
+    --theme-icon-focus-background: rgba(var(--accent-color), 0.2);
+    --theme-background: var(--main-bg-color);
+    --header-blur-background: rgba(20, 20, 20, 0.66);
+    --drawer-background: #2C2C2E;
+    --docked-drawer-background: var(--transparency-dark-25);
+    --button-background: var(--button-color);
+    --card-background: var(--transparency-dark-15);
+    --footer-background: var(--modal-footer-color);
+    --footer-blur-background: rgba(29, 29, 31, 0.66);
+    --header-background: var(--theme-background);
+    --theme-body-secondary-text-color: rgba(255, 255, 255, .6);
+    --line-background: var(--transparency-light-10);
+    --line-size: .08em;
+    --scrollbar-thumb-background: rgba(255, 255, 255, .3);
+}
+
+@media (pointer:fine) {
+    :not(.layout-tv):root {
+        --theme-background: var(--main-bg-color);
+        --header-blur-background: rgba(20, 20, 20, 0.4);
+        --drawer-background: #2C2C2E;
+        --docked-drawer-background: var(--transparency-dark-25);
+        --button-background: #1f1f1f;
+        --card-background: var(--transparency-dark-15);
+        --footer-background: var(--modal-footer-color);
+        --footer-blur-background: rgba(29, 29, 31, 0.66);
+    }
+}
+
+.layout-tv:root {
+    --theme-background: var(--main-bg-color);
+    --header-blur-background: rgba(20, 20, 20, 0.66);
+    --drawer-background: #2C2C2E;
+    --docked-drawer-background: var(--transparency-dark-25);
+    --button-background: #1f1f1f;
+    --card-background: var(--transparency-dark-15);
+    --footer-background: var(--modal-footer-color);
+    --footer-blur-background: rgba(29, 29, 31, 0.66);
+}
+
+.inputLabel,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+label {
+    color: var(--text-hover);
+}
+
+.cardText.cardTextCentered.cardText-first>button,
+a:not(.emby-button) {
+    color: var(--link-color) !important;
+}
+
+.cardText.cardTextCentered.cardText-first>button:hover,
+a:hover:not(.emby-button) {
+    color: var(--link-color-hover) !important;
+}
+
+html {
+    color: var(--theme-text-color);
+    scrollbar-color: var(--scrollbar-thumb-background) transparent;
+}
+
+.emby-collapsible-button {
+    border-color: var(--line-background) !important;
+}
+
+.skinHeader-withBackground.skinHeader-withfulldrawer {
+    border-bottom: .08em solid var(--line-background);
+}
+
+.skinHeader-withBackground {
+    background: var(--header-background);
+    background-repeat: repeat, no-repeat;
+    background-attachment: fixed, fixed;
+    background-position: center center, center center;
+    background-size: auto, cover;
+    -webkit-background-size: auto, cover;
+    -moz-background-size: auto, cover;
+    -o-background-size: auto, cover;
+}
+
+.appfooter,
+.formDialogFooter:not(.formDialogFooter-clear) {
+    background: var(--modal-footer-color) !important;
+    background-repeat: repeat, no-repeat;
+    background-attachment: fixed, fixed !important;
+    background-position: center center, center center;
+    background-size: auto, cover !important;
+    -webkit-background-size: auto, cover;
+    -moz-background-size: auto, cover;
+    -o-background-size: auto, cover;
+}
+
+.formDialogHeader:not(.formDialogHeader-clear) {
+    background: var(--modal-header-color) !important;
+    background-repeat: repeat, no-repeat;
+    background-attachment: fixed, fixed;
+    background-position: center center, center center;
+    background-size: auto, cover !important;
+    -webkit-background-size: auto, cover;
+    -moz-background-size: auto, cover;
+    -o-background-size: auto, cover;
+}
+
+.dialog {
+    background: var(--modal-bg-color);
+    background-repeat: repeat, no-repeat;
+    background-attachment: fixed, fixed;
+    background-position: center center, center center;
+    background-size: auto, cover;
+    -webkit-background-size: auto, cover;
+    -moz-background-size: auto, cover;
+    -o-background-size: auto, cover;
+}
+
+@supports (backdrop-filter:blur(1em)) or (-webkit-backdrop-filter:blur(1em)) {
+    .skinHeader-withBackground {
+        background: var(--header-blur-background);
+        -webkit-backdrop-filter: saturate(1.8) blur(1.5em);
+        backdrop-filter: saturate(1.8) blur(1.5em);
+    }
+
+    .appfooter-withbackdropfilter {
+        background: var(--footer-blur-background);
+        -webkit-backdrop-filter: saturate(1.8) blur(1.5em);
+        backdrop-filter: saturate(1.8) blur(1.5em);
+    }
+}
+
+.skinHeader.semiTransparent {
+    -webkit-backdrop-filter: none !important;
+    backdrop-filter: none !important;
+    background-color: rgba(0, 0, 0, .3);
+    background: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, .6)), to(rgba(0, 0, 0, 0)));
+    background: -webkit-linear-gradient(rgba(0, 0, 0, .6), rgba(0, 0, 0, 0));
+    background: -o-linear-gradient(rgba(0, 0, 0, .6), rgba(0, 0, 0, 0));
+    background: linear-gradient(rgba(0, 0, 0, .6), rgba(0, 0, 0, 0));
+    -webkit-box-shadow: none !important;
+    box-shadow: none !important;
+    border-bottom: 0;
+    color: rgba(255, 255, 255, .87);
+}
+
+.backgroundContainer,
+html {
+    background: var(--theme-background);
+    background-repeat: repeat, no-repeat;
+    background-attachment: fixed, fixed;
+    background-position: center center, center center;
+    background-size: auto, cover;
+    -webkit-background-size: auto, cover;
+    -moz-background-size: auto, cover;
+    -o-background-size: auto, cover;
+}
+
+@media not all and (min-width:50em) {
+    .itemBackgroundContainer .withBackdrop {
+        background: var(--theme-background);
+        background-repeat: repeat, no-repeat;
+        background-attachment: fixed, fixed;
+        background-position: center center, center center;
+        background-size: auto, cover;
+        -webkit-background-size: auto, cover;
+        -moz-background-size: auto, cover;
+        -o-background-size: auto, cover;
+    }
+}
+
+.paper-icon-button-light-tv:focus,
+.paper-icon-button-light:active {
+    color: rgb(var(--theme-primary-color));
+    background-color: var(--theme-icon-focus-background);
+}
+
+@media(hover:hover) and (pointer:fine) {
+    .paper-icon-button-light:focus {
+        color: rgb(var(--theme-primary-color));
+        background-color: var(--theme-icon-focus-background);
+    }
+}
+
+.emby-select-withcolor {
+    color: inherit;
+    background: var(--transparency-dark-25);
+    border: var(--line-size) solid transparent;
+}
+
+.toast {
+    background: var(--button-background);
+    color: var(--theme-text-color);
+}
+
+@supports (backdrop-filter:blur(1em)) or (-webkit-backdrop-filter:blur(1em)) {
+
+    .dialog-blur,
+    .toast {
+        color: var(--text-hover);
+        background: rgba(56, 56, 56, .76);
+        -webkit-backdrop-filter: blur(2.5em) saturate(1.8);
+        backdrop-filter: blur(2.5em) saturate(1.8);
+        -webkit-box-shadow: none !important;
+        box-shadow: none !important;
+    }
+
+    .toast-large {
+        color: rgba(255, 255, 255, .87);
+    }
+}
+
+.fab:focus,
+.raised:focus {
+    background: var(--button-color-hover);
+    color: var(--button-text-hover);
+}
+
+.button-submit:not(.emby-button-tv) {
+    background: var(--button-color);
+    color: var(--button-text);
+}
+
+.button-submit:not(.emby-button-tv):focus,
+.button-submit:not(.emby-button-tv):hover {
+    background: var(--button-color-hover);
+    color: var(--button-text-hover);
+}
+
+.emby-select-withcolor>option {
+    color: inherit;
+    background: var(--button-background);
+}
+
+.emby-select-withcolor:focus {
+    border-color: rgb(var(--theme-primary-color)) !important;
+}
+
+.emby-select-tv-withcolor:focus {
+    background-color: rgb(var(--theme-primary-color)) !important;
+    color: var(--text-hover) !important;
+}
+
+.checkboxLabel {
+    color: inherit;
+}
+
+.emby-checkbox-focusring:focus:before {
+    background-color: var(--theme-icon-focus-background);
+}
+
+.inputLabelFocused,
+.selectLabelFocused,
+.textareaLabelFocused {
+    color: rgb(var(--accent-color));
+}
+
+.button-link {
+    color: var(--link-color);
+}
+
+.button-flat-accent {
+    color: rgb(var(--accent-color));
+}
+
+.paperList,
+.visualCardBox {
+    background-color: var(--card-background);
+}
+
+.collapseContent {
+    border: var(--line-size) solid var(--line-background);
+}
+
+.fieldDescription,
+.listItemBodyText-secondary,
+.secondaryText {
+    color: var(--theme-body-secondary-text-color);
+}
+
+.cardText-secondary {
+    color: var(--text);
+}
+
+.cardText-first {
+    color: var(--theme-text-color-opaque);
+}
+
+.actionsheetDivider {
+    background: var(--line-background);
+}
+
+@media(hover:hover) and (pointer:fine) {
+    .actionSheetMenuItem:hover {
+        background: var(--transparency-light-20);
+    }
+}
+
+div.selectionCommandsPanel {
+    background: rgb(var(--transparency-dark-25));
+    color: var(--label-text-color);
+}
+
+.itemSelectionCount {
+    color: var(--label-text-color) !important;
+}
+
+.upNextDialog-countdownText {
+    color: rgb(var(--theme-primary-color));
+}
+
+.alphaPickerButton {
+    color: var(--theme-body-secondary-text-color);
+    background-color: transparent;
+}
+
+.alphaPickerButton-selected {
+    color: var(--theme-text-color-opaque);
+}
+
+.alphaPickerButton-tv:focus {
+    background-color: rgb(var(--theme-primary-color));
+    color: var(--text-hover) !important;
+}
+
+.detailTableBodyRow-shaded:nth-child(2n) {
+    background: #1c1c1c;
+    background: rgba(30, 30, 30, .9);
+}
+
+.listItem-border {
+    border-color: var(--line-background) !important;
+}
+
+.listItem-focusscale:focus {
+    background: rgba(54, 54, 54, .8);
+}
+
+.progressring-spiner {
+    border-color: rgb(var(--theme-primary-color));
+}
+
+.mediaInfoText {
+    background: var(--button-background);
+}
+
+.starIcon {
+    color: #cb272a;
+}
+
+.mediaInfoTimerIcon {
+    color: #cb272a;
+}
+
+.emby-input,
+.emby-textarea {
+    color: inherit !important;
+    //background:var(--transparency-dark-25)!important;
+    background: var(--card-background) !important;
+    border: var(--line-size) solid rgba(255, 255, 255, .1) !important;
+}
+
+.emby-input:focus,
+.emby-textarea:focus {
+    border-color: rgb(var(--theme-primary-color));
+}
+
+.emby-checkbox:checked+span:before {
+    border-color: currentColor;
+}
+
+.emby-checkbox:checked+span:before {
+    border-color: rgb(var(--theme-primary-color)) !important;
+    background-color: rgb(var(--theme-primary-color)) !important;
+}
+
+.checkboxLabel::after {
+    color: var(--label-text-color);
+}
+
+.itemProgressBarForeground {
+    background-color: rgb(var(--theme-primary-color));
+}
+
+.itemProgressBarForeground-recording {
+    background-color: #cb272a;
+}
+
+.countIndicator {
+    background: rgb(var(--theme-primary-color));
+    color: var(--label-text-color);
+}
+
+.playedIndicator {
+    background: rgb(var(--theme-primary-color));
+}
+
+.drawer-docked {
+    background: var(--docked-drawer-background);
+    border-right: var(--line-size) solid var(--line-background);
+}
+
+@media(hover:hover) and (pointer:fine) {
+    .navMenuOption:hover {
+        background: #303030;
+    }
+}
+
+.navMenuOption-selected {
+    background-color: var(--theme-icon-focus-background) !important;
+    color: rgb(var(--accent-color));
+}
+
+.emby-button-focusscale:focus,
+.emby-button-focusscale:focus .detailButton-icon {
+    background: rgb(var(--theme-primary-color));
+    color: var(--text-hover);
+}
+
+.emby-tab-button {
+    color: var(--theme-body-secondary-text-color);
+}
+
+.emby-tab-button-active {
+    color: rgb(var(--accent-color));
+}
+
+.emby-tab-button-active .emby-button-tv {
+    color: var(--theme-text-color-opaque);
+}
+
+.emby-tab-button .emby-button-tv:focus {
+    color: rgb(var(--accent-color));
+    background: 0 0;
+}
+
+.emby-button {
+    outline-color: rgb(var(--theme-primary-color));
+}
+
+.channelCell,
+.guide-headerTimeslots,
+.timeslotHeaders {
+    background: var(--theme-background);
+    background-repeat: repeat, no-repeat;
+    background-attachment: fixed, fixed;
+    background-position: center center, center center;
+    background-size: auto, cover;
+    -webkit-background-size: auto, cover;
+    -moz-background-size: auto, cover;
+    -o-background-size: auto, cover;
+}
+
+@media (pointer:coarse) {
+    .channelCell-mobilefocus {
+        background: var(--theme-background) !important;
+        background-repeat: repeat, no-repeat;
+        background-attachment: fixed, fixed;
+        background-position: center center, center center;
+        background-size: auto, cover;
+        -webkit-background-size: auto, cover;
+        -moz-background-size: auto, cover;
+        -o-background-size: auto, cover;
+    }
+}
+
+.channelCell-mobilefocus:not(:focus-visible) {
+    background: var(--theme-background) !important;
+    background-repeat: repeat, no-repeat;
+    background-attachment: fixed, fixed;
+    background-position: center center, center center;
+    background-size: auto, cover;
+    -webkit-background-size: auto, cover;
+    -moz-background-size: auto, cover;
+    -o-background-size: auto, cover;
+}
+
+.channelCell-mobilefocus:not(:-moz-focusring) {
+    background: var(--theme-background) !important;
+    background-repeat: repeat, no-repeat;
+    background-attachment: fixed, fixed;
+    background-position: center center, center center;
+    background-size: auto, cover;
+    -webkit-background-size: auto, cover;
+    -moz-background-size: auto, cover;
+    -o-background-size: auto, cover;
+}
+
+.channelCell,
+.epgRow,
+.programCell {
+    border-color: rgba(255, 255, 255, .05);
+}
+
+.guide-currentTimeIndicatorDot {
+    border-right-color: var(--theme-icon-focus-background);
+}
+
+.guide-currentTimeIndicatorDot:after {
+    border-top-color: rgb(var(--theme-primary-color));
+}
+
+.firstChannelCell {
+    border-color: transparent;
+}
+
+.programCell-sports {
+    background: #3949ab !important;
+}
+
+.programCell-movie {
+    background: #5e35b1 !important;
+}
+
+.programCell-kids {
+    background: #039be5 !important;
+}
+
+.programCell-news {
+    background: #43a047 !important;
+}
+
+.channelCell:focus,
+.programCell:focus {
+    background-color: rgb(var(--theme-primary-color));
+    color: var(--text-hover);
+}
+
+.guide-programTextIcon {
+    color: #1e1e1e;
+    background: #555;
+}
+
+.infoBanner {
+    background: var(--card-background) !important;
+    padding: 1em;
+    -webkit-border-radius: .3em;
+    border-radius: .3em;
+}
+
+.ratingbutton-icon-withrating {
+    color: #c33 !important;
+}
+
+.downloadbutton-icon-on {
+    color: #4285f4;
+}
+
+.downloadbutton-icon-complete {
+    color: #4285f4;
+}
+
+.playstatebutton-icon-played {
+    color: #c33 !important;
+}
+
+.repeatButton-active {
+    color: #4285f4;
+}
+
+.card:focus .card-focuscontent {
+    border-color: rgb(var(--theme-primary-color));
+}
+
+.cardContent-button {
+    background-color: transparent;
+}
+
+.cardContent-shadow {
+    background-color: var(--card-background);
+}
+
+div.defaultCardBackground0 {
+    background-color: var(--card-background);
+}
+
+.defaultCardBackground1 {
+    background-color: #d2b019;
+}
+
+.defaultCardBackground2 {
+    background-color: #338abb;
+}
+
+.defaultCardBackground3 {
+    background-color: #6b689d;
+}
+
+.defaultCardBackground4 {
+    background-color: #dd452b;
+}
+
+.defaultCardBackground5 {
+    background-color: #5ccea9;
+}
+
+.cardOverlayButtonIcon {
+    background-color: rgb(var(--theme-primary-color));
+}
+
+.cardScalable.cardPadder-portrait>div>button>i {
+    color: var(--label-text-color) !important;
+}
+
+::-webkit-scrollbar-track-piece {
+    background-color: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--scrollbar-thumb-background);
+}
+
+.emby-slider-background {
+    background: var(--scrollbar-thumb-background);
+}
+
+.emby-slider {
+    color: rgb(var(--theme-primary-color));
+}
+
+.emby-slider::-moz-range-track {
+    background: #444;
+}
+
+.emby-slider::-moz-range-progress {
+    background: rgb(var(--theme-primary-color));
+}
+
+.emby-slider::-webkit-slider-thumb {
+    background: rgb(var(--theme-primary-color));
+}
+
+.emby-slider::-moz-range-thumb {
+    background: rgb(var(--theme-primary-color));
+}
+
+.emby-slider::-ms-thumb {
+    background: rgb(var(--theme-primary-color));
+}
+
+.emby-slider-background-lower {
+    background-color: rgb(var(--theme-primary-color));
+}
+
+.scrollbuttoncontainer {
+    color: var(--text-hover);
+    background: rgba(20, 20, 20, .5);
+}
+
+.recordingIcon-active {
+    color: #c33 !important;
+}
+
+.drawerLogo {
+    border-bottom-color: var(--line-background);
+}
+
+.searchTabsContainer {
+    border-bottom: var(--line-size) solid var(--line-background);
+}
+
+.emby-search-tab-button.emby-tab-button-active {
+    background: rgb(var(--accent-color)) !important;
+}
+
+.textActionButton.dragging {
+    background: var(--button-background) !important;
+}
+
+.dragging-over.full-drop-target {
+    background: rgb(var(--theme-primary-color)) !important;
+    color: var(--text-hover) !important;
+}
+
+.dragging-over-top:before {
+    background: rgb(var(--accent-color));
+}
+
+.dragging-over-bottom:after {
+    background: rgb(var(--accent-color));
+}
+
+@media (hover:hover) and (pointer:fine) {
+    .navMenuOption:hover:not(.navMenuOption-selected) {
+        background: 0 !important;
+        color: var(--accent-color-hover);
+    }
+}
+
+div.darkContentContainer {
+    --theme-background: var(--main-bg-color);
+    --header-blur-background: rgba(20, 20, 20, 0.66);
+    --drawer-background: #2C2C2E;
+    --docked-drawer-background: var(--transparency-dark-25);
+    --button-background: #1f1f1f;
+    --card-background: var(--transparency-dark-15);
+    --footer-background: var(--modal-footer-color);
+    --footer-blur-background: rgba(29, 29, 31, 0.66);
+}
+
+.mainDrawer {
+    background: var(--docked-drawer-background) !important;
+    -webkit-backdrop-filter: saturate(1.8) blur(1.5em);
+    backdrop-filter: saturate(1.8) blur(1.5em);
+}
+
+.jstree-default .jstree-clicked {
+    background: rgb(var(--accent-color));
+    -webkit-border-radius: 2px;
+    border-radius: 2px;
+    color: var(--label-text-color) !important;
+}
