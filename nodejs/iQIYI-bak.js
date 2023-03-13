@@ -64,8 +64,6 @@ var P00001 = '';
 
 var P00003 = '';
 
-var dfp = '';
-
 var $nobyda = nobyda();
 
 (async () => {
@@ -80,10 +78,9 @@ var $nobyda = nobyda();
     if ($nobyda.isRequest) {
         GetCookie()
     } else if (cookie) {
-        if (cookie.includes("P00001") && cookie.includes("P00003") && cookie.includes("__dfp")) {
+        if (cookie.includes("P00001") && cookie.includes("P00003")) {
             P00001 = cookie.match(/P00001=(.*?);/)[1];
             P00003 = cookie.match(/P00003=(.*?);/)[1];
-            dfp = cookie.match(/__dfp=(.*?)@/)[1];
             await Checkin();
             //await WebCheckin();
             for (let i = 0; i < 3; i++){
