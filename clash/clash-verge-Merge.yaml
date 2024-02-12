@@ -1,0 +1,22 @@
+# Merge Template for clash verge
+# The `Merge` format used to enhance profile
+
+prepend-rules:
+# 自定义规则，在这里添加自己的新规则
+  # 白名单
+  - DOMAIN-SUFFIX,sda1.dev,DIRECT
+  - DOMAIN-SUFFIX,ax1x.com,DIRECT
+
+  # 黑名单
+  - DOMAIN,kp.m-team.cc,🌐 国外流量
+
+
+prepend-proxies:
+
+prepend-proxy-groups:
+
+append-rules:
+
+append-proxies:
+
+append-proxy-groups:
